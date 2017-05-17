@@ -3,6 +3,7 @@ android:
   components:
     # Uncomment the lines below if you want to
     # use the latest revision of Android SDK Tools
+    
     - tools
     - platform-tools
 
@@ -21,14 +22,12 @@ android:
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
     - sys-img-armeabi-v7a-android-22
-    - sys-img-armeabi-v7a-android-17
-
     - extra-android-support # because I'm use support library
 
   licenses:
     - '.+'
 
-sudo: required
+sudo: true
 
 jdk:
   - oraclejdk8
@@ -36,7 +35,10 @@ jdk:
 install: true
 
 before_script:
+  - git clone https://github.com/urho3d/android-ndk.git $HOME/android-ndk-root
+  - export ANDROID_NDK_HOME=$HOME/android-ndk-root
   - chmod +x gradlew
 
 script:
-  - ./gradlew assembleRelease --stacktrace
+  - ./gradlew assembleRelease --stacktrace --no-daemon
+
