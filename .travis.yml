@@ -3,6 +3,11 @@ jdk: oraclejdk8
 sudo: required
 licenses:
     - '.+'
+
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
+
 android:
   components:
     # Uncomment the lines below if you want to
@@ -21,7 +26,8 @@ android:
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
-    - addon-google_apis-google-25
+    #- addon-google_apis-google-25
+    - addon-google_apis-google-21
 
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
@@ -35,7 +41,7 @@ before_script:
   - git clone https://github.com/urho3d/android-ndk.git $HOME/android-ndk-root
   - export ANDROID_NDK_HOME=$HOME/android-ndk-root
   - chmod +x gradlew
-  - echo no | android create avd --force -n test -t "android-21" --abi "armeabi-v7a" --tag "google_apis"
+  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a --tag google_apis
   - emulator -avd test -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
