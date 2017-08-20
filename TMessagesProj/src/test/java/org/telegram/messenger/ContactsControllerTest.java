@@ -1,4 +1,4 @@
-package org.telegram.Test;
+package org.telegram.messenger;
 
 import org.junit.Assert;
 import org.junit.Before;
