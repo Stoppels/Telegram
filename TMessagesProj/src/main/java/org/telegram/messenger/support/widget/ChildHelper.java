@@ -48,7 +48,7 @@ class ChildHelper {
     ChildHelper(Callback callback) {
         mCallback = callback;
         mBucket = new Bucket();
-        mHiddenViews = new ArrayList<View>();
+        mHiddenViews = new ArrayList<>();
     }
 
     /**
@@ -510,7 +510,7 @@ class ChildHelper {
         }
     }
 
-    static interface Callback {
+    interface Callback {
 
         int getChildCount();
 

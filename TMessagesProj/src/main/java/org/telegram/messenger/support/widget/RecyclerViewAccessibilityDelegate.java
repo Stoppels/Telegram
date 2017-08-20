@@ -44,11 +44,8 @@ public class RecyclerViewAccessibilityDelegate extends AccessibilityDelegateComp
         if (super.performAccessibilityAction(host, action, args)) {
             return true;
         }
-        if (!shouldIgnore() && mRecyclerView.getLayoutManager() != null) {
-            return mRecyclerView.getLayoutManager().performAccessibilityAction(action, args);
-        }
+        return !shouldIgnore() && mRecyclerView.getLayoutManager() != null && mRecyclerView.getLayoutManager().performAccessibilityAction(action, args);
 
-        return false;
     }
 
     @Override
@@ -96,11 +93,7 @@ public class RecyclerViewAccessibilityDelegate extends AccessibilityDelegateComp
             if (super.performAccessibilityAction(host, action, args)) {
                 return true;
             }
-            if (!shouldIgnore() && mRecyclerView.getLayoutManager() != null) {
-                return mRecyclerView.getLayoutManager().
-                        performAccessibilityActionForItem(host, action, args);
-            }
-            return false;
+            return !shouldIgnore() && mRecyclerView.getLayoutManager() != null && mRecyclerView.getLayoutManager().performAccessibilityActionForItem(host, action, args);
         }
     };
 }

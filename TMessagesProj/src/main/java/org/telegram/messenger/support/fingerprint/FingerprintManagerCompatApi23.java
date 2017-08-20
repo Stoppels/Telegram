@@ -16,10 +16,13 @@
 
 package org.telegram.messenger.support.fingerprint;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 
 import org.telegram.messenger.FileLog;
 

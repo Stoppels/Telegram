@@ -18,6 +18,7 @@ package org.telegram.messenger.exoplayer2.upstream.cache;
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.upstream.cache.Cache.CacheException;
 import org.telegram.messenger.exoplayer2.util.Assertions;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -176,7 +177,7 @@ import java.util.TreeSet;
   /** Removes the given span from cache. */
   public boolean removeSpan(CacheSpan span) {
     if (cachedSpans.remove(span)) {
-      span.file.delete();
+//      span.file.delete();
       return true;
     }
     return false;

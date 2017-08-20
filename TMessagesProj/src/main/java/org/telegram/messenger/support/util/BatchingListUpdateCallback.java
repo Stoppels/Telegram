@@ -28,6 +28,7 @@ package org.telegram.messenger.support.util;
  * If you use this class to batch updates, you must call {@link #dispatchLastEvent()} when the
  * stream of update events drain.
  */
+@SuppressWarnings("JavadocReference")
 public class BatchingListUpdateCallback implements ListUpdateCallback {
     private static final int TYPE_NONE = 0;
     private static final int TYPE_ADD = 1;

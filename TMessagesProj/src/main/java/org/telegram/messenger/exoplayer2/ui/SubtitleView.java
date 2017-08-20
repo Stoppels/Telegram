@@ -23,10 +23,12 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.accessibility.CaptioningManager;
+
 import org.telegram.messenger.exoplayer2.text.CaptionStyleCompat;
 import org.telegram.messenger.exoplayer2.text.Cue;
 import org.telegram.messenger.exoplayer2.text.TextRenderer;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.util.ArrayList;
 import java.util.List;
 

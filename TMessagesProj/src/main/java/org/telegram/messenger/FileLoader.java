@@ -85,7 +85,7 @@ public class FileLoader {
             dir = mediaDirs.get(MEDIA_DIR_CACHE);
         }
         try {
-            if (!dir.isDirectory()) {
+            if (dir != null && !dir.isDirectory()) {
                 dir.mkdirs();
             }
         } catch (Exception e) {
@@ -368,7 +368,7 @@ public class FileLoader {
                 } else if (webDocument != null) {
                     fileName = getAttachFileName(webDocument);
                 }
-                if (fileName == null || fileName.contains("" + Integer.MIN_VALUE)) {
+                if (fileName == null || fileName.contains(Integer.toString(Integer.MIN_VALUE))) {
                     return;
                 }
 
@@ -610,7 +610,7 @@ public class FileLoader {
         if (message instanceof TLRPC.TL_messageService) {
             if (message.action.photo != null) {
                 ArrayList<TLRPC.PhotoSize> sizes = message.action.photo.sizes;
-                if (sizes.size() > 0) {
+                if (sizes.isEmpty()) {
                     TLRPC.PhotoSize sizeFull = getClosestPhotoSizeWithSize(sizes, AndroidUtilities.getPhotoSize());
                     if (sizeFull != null) {
                         return getAttachFileName(sizeFull);
@@ -622,7 +622,7 @@ public class FileLoader {
                 return getAttachFileName(message.media.document);
             } else if (message.media instanceof TLRPC.TL_messageMediaPhoto) {
                 ArrayList<TLRPC.PhotoSize> sizes = message.media.photo.sizes;
-                if (sizes.size() > 0) {
+                if (sizes.isEmpty()) {
                     TLRPC.PhotoSize sizeFull = getClosestPhotoSizeWithSize(sizes, AndroidUtilities.getPhotoSize());
                     if (sizeFull != null) {
                         return getAttachFileName(sizeFull);
@@ -631,7 +631,7 @@ public class FileLoader {
             } else if (message.media instanceof TLRPC.TL_messageMediaWebPage) {
                 if (message.media.webpage.photo != null) {
                     ArrayList<TLRPC.PhotoSize> sizes = message.media.webpage.photo.sizes;
-                    if (sizes.size() > 0) {
+                    if (sizes.isEmpty()) {
                         TLRPC.PhotoSize sizeFull = getClosestPhotoSizeWithSize(sizes, AndroidUtilities.getPhotoSize());
                         if (sizeFull != null) {
                             return getAttachFileName(sizeFull);
@@ -659,7 +659,7 @@ public class FileLoader {
         if (message instanceof TLRPC.TL_messageService) {
             if (message.action.photo != null) {
                 ArrayList<TLRPC.PhotoSize> sizes = message.action.photo.sizes;
-                if (sizes.size() > 0) {
+                if (sizes.isEmpty()) {
                     TLRPC.PhotoSize sizeFull = getClosestPhotoSizeWithSize(sizes, AndroidUtilities.getPhotoSize());
                     if (sizeFull != null) {
                         return getPathToAttach(sizeFull);
@@ -671,7 +671,7 @@ public class FileLoader {
                 return getPathToAttach(message.media.document);
             } else if (message.media instanceof TLRPC.TL_messageMediaPhoto) {
                 ArrayList<TLRPC.PhotoSize> sizes = message.media.photo.sizes;
-                if (sizes.size() > 0) {
+                if (sizes.isEmpty()) {
                     TLRPC.PhotoSize sizeFull = getClosestPhotoSizeWithSize(sizes, AndroidUtilities.getPhotoSize());
                     if (sizeFull != null) {
                         return getPathToAttach(sizeFull);
@@ -682,7 +682,7 @@ public class FileLoader {
                     return getPathToAttach(message.media.webpage.document);
                 } else if (message.media.webpage.photo != null) {
                     ArrayList<TLRPC.PhotoSize> sizes = message.media.webpage.photo.sizes;
-                    if (sizes.size() > 0) {
+                    if (sizes.isEmpty()) {
                         TLRPC.PhotoSize sizeFull = getClosestPhotoSizeWithSize(sizes, AndroidUtilities.getPhotoSize());
                         if (sizeFull != null) {
                             return getPathToAttach(sizeFull);

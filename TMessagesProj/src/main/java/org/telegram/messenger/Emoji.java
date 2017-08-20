@@ -8,11 +8,6 @@
 
 package org.telegram.messenger;
 
-import java.io.File;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Locale;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -30,6 +25,11 @@ import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Locale;
 
 public class Emoji {
     private static HashMap<CharSequence, DrawableInfo> rects = new HashMap<>();

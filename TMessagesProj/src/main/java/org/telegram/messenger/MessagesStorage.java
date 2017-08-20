@@ -628,7 +628,7 @@ public class MessagesStorage {
                                 try {
                                     ids.put(Long.parseLong(key), flags);
                                 } catch (Exception e) {
-                                    e.printStackTrace();
+                                    FileLog.e(e);
                                 }
                             } else if (value == 3) {
 

@@ -22,15 +22,15 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.R;
 import org.telegram.messenger.query.SearchQuery;
 import org.telegram.messenger.support.widget.LinearLayoutManager;
 import org.telegram.messenger.support.widget.RecyclerView;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
@@ -637,8 +637,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                                 username = name.substring(usernamePos + 2);
                             }
                             int found = 0;
-                            for (int a = 0; a < search.length; a++) {
-                                String q = search[a];
+                            for (String q : search) {
                                 if (name.startsWith(q) || name.contains(" " + q) || tName != null && (tName.startsWith(q) || tName.contains(" " + q))) {
                                     found = 1;
                                 } else if (username != null && username.startsWith(q)) {

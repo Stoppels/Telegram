@@ -23,6 +23,7 @@ import android.os.Message;
 import android.view.Choreographer;
 import android.view.Choreographer.FrameCallback;
 import android.view.WindowManager;
+
 import org.telegram.messenger.exoplayer2.C;
 
 /**

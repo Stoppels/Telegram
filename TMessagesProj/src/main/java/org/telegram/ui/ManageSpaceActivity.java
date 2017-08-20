@@ -34,7 +34,6 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.ActionBar.Theme;
 
 import java.util.ArrayList;
 

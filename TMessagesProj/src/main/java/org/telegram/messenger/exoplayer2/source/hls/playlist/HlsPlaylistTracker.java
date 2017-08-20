@@ -17,6 +17,7 @@ package org.telegram.messenger.exoplayer2.source.hls.playlist;
 
 import android.net.Uri;
 import android.os.Handler;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.ParserException;
 import org.telegram.messenger.exoplayer2.source.AdaptiveMediaSourceEventListener.EventDispatcher;
@@ -26,6 +27,7 @@ import org.telegram.messenger.exoplayer2.upstream.DataSource;
 import org.telegram.messenger.exoplayer2.upstream.Loader;
 import org.telegram.messenger.exoplayer2.upstream.ParsingLoadable;
 import org.telegram.messenger.exoplayer2.util.UriUtil;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;

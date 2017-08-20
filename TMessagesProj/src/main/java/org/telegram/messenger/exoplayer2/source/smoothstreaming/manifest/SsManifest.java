@@ -16,11 +16,13 @@
 package org.telegram.messenger.exoplayer2.source.smoothstreaming.manifest;
 
 import android.net.Uri;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.Format;
 import org.telegram.messenger.exoplayer2.util.Assertions;
 import org.telegram.messenger.exoplayer2.util.UriUtil;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.util.List;
 import java.util.UUID;
 

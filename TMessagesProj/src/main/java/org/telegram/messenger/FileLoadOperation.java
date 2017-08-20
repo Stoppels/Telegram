@@ -14,8 +14,8 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 
-import java.io.RandomAccessFile;
 import java.io.File;
+import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -139,7 +139,7 @@ public class FileLoadOperation {
             }
             totalBytesCount = documentLocation.size;
             if (key != null) {
-                int toAdd = 0;
+//                int toAdd = 0;
                 if (totalBytesCount % 16 != 0) {
                     bytesCountPadding = 16 - totalBytesCount % 16;
                     totalBytesCount += bytesCountPadding;
@@ -617,13 +617,13 @@ public class FileLoadOperation {
                     }
                     if (response != null) {
                         if (currentType == ConnectionsManager.FileTypeAudio) {
-                            StatsController.getInstance().incrementReceivedBytesCount(response.networkType, StatsController.TYPE_AUDIOS, response.getObjectSize() + 4);
+                            StatsController.getInstance().incrementReceivedBytesCount(response.networkType, StatsController.TYPE_AUDIOS, (long) response.getObjectSize() + 4);
                         } else if (currentType == ConnectionsManager.FileTypeVideo) {
-                            StatsController.getInstance().incrementReceivedBytesCount(response.networkType, StatsController.TYPE_VIDEOS, response.getObjectSize() + 4);
+                            StatsController.getInstance().incrementReceivedBytesCount(response.networkType, StatsController.TYPE_VIDEOS, (long) response.getObjectSize() + 4);
                         } else if (currentType == ConnectionsManager.FileTypePhoto) {
-                            StatsController.getInstance().incrementReceivedBytesCount(response.networkType, StatsController.TYPE_PHOTOS, response.getObjectSize() + 4);
+                            StatsController.getInstance().incrementReceivedBytesCount(response.networkType, StatsController.TYPE_PHOTOS, (long) response.getObjectSize() + 4);
                         } else if (currentType == ConnectionsManager.FileTypeFile) {
-                            StatsController.getInstance().incrementReceivedBytesCount(response.networkType, StatsController.TYPE_FILES, response.getObjectSize() + 4);
+                            StatsController.getInstance().incrementReceivedBytesCount(response.networkType, StatsController.TYPE_FILES, (long) response.getObjectSize() + 4);
                         }
                     }
                     processRequestResult(requestInfo, error);

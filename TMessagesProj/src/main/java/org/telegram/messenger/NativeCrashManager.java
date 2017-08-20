@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.app.Activity;
 import android.net.Uri;
-import android.util.Log;
 
 import net.hockeyapp.android.Constants;
 import net.hockeyapp.android.utils.SimpleMultipartEntity;
@@ -90,7 +89,7 @@ public class NativeCrashManager {
 
                     FileLog.e("response code = " + urlConnection.getResponseCode() + " message = " + urlConnection.getResponseMessage());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    FileLog.e(e);
                 } finally {
                     activity.deleteFile(logFilename);
                     activity.deleteFile(dumpFilename);

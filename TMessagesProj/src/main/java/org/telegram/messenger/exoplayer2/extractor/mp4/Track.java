@@ -16,8 +16,10 @@
 package org.telegram.messenger.exoplayer2.extractor.mp4;
 
 import android.support.annotation.IntDef;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.Format;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

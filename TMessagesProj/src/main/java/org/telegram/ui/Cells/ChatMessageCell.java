@@ -37,12 +37,12 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -52,13 +52,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.RadialProgress;
 import org.telegram.ui.Components.SeekBar;
 import org.telegram.ui.Components.SeekBarWaveform;
 import org.telegram.ui.Components.StaticLayoutEx;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.URLSpanBotCommand;
 import org.telegram.ui.Components.URLSpanMono;
@@ -414,7 +414,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                             isMono = true;
                         }
                         boolean ignore = false;
-                        if (link.length == 0 || link.length != 0 && link[0] instanceof URLSpanBotCommand && !URLSpanBotCommand.enabled) {
+                        if (link.length == 0 || link[0] instanceof URLSpanBotCommand && !URLSpanBotCommand.enabled) {
                             ignore = true;
                         }
                         if (!ignore) {
@@ -506,7 +506,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                             Spannable buffer = (Spannable) currentMessageObject.caption;
                             ClickableSpan[] link = buffer.getSpans(off, off, ClickableSpan.class);
                             boolean ignore = false;
-                            if (link.length == 0 || link.length != 0 && link[0] instanceof URLSpanBotCommand && !URLSpanBotCommand.enabled) {
+                            if (link.length == 0 || link[0] instanceof URLSpanBotCommand && !URLSpanBotCommand.enabled) {
                                 ignore = true;
                             }
                             if (!ignore) {
@@ -563,7 +563,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         Spannable buffer = (Spannable) currentMessageObject.linkDescription;
                         ClickableSpan[] link = buffer.getSpans(off, off, ClickableSpan.class);
                         boolean ignore = false;
-                        if (link.length == 0 || link.length != 0 && link[0] instanceof URLSpanBotCommand && !URLSpanBotCommand.enabled) {
+                        if (link.length == 0 || link[0] instanceof URLSpanBotCommand && !URLSpanBotCommand.enabled) {
                             ignore = true;
                         }
                         if (!ignore) {
@@ -639,7 +639,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                                 Spannable buffer = (Spannable) currentMessageObject.linkDescription;
                                 ClickableSpan[] link = buffer.getSpans(off, off, ClickableSpan.class);
                                 boolean ignore = false;
-                                if (link.length == 0 || link.length != 0 && link[0] instanceof URLSpanBotCommand && !URLSpanBotCommand.enabled) {
+                                if (link.length == 0 || link[0] instanceof URLSpanBotCommand && !URLSpanBotCommand.enabled) {
                                     ignore = true;
                                 }
                                 if (!ignore) {

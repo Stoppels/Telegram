@@ -19,10 +19,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.support.widget.RecyclerView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.DrawerActionCell;
 import org.telegram.ui.Cells.DividerCell;
-import org.telegram.ui.Cells.EmptyCell;
+import org.telegram.ui.Cells.DrawerActionCell;
 import org.telegram.ui.Cells.DrawerProfileCell;
+import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Components.RecyclerListView;
 
 import java.util.ArrayList;

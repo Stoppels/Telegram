@@ -18,10 +18,12 @@ package org.telegram.messenger.exoplayer2.upstream;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.util.Assertions;
 import org.telegram.messenger.exoplayer2.util.Predicate;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;

@@ -34,7 +34,6 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.ActionBar.Theme;
 
 public class IntroActivity extends Activity {
 

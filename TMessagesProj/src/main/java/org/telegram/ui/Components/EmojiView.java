@@ -45,12 +45,12 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.query.StickersQuery;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
 import org.telegram.messenger.support.widget.GridLayoutManager;
 import org.telegram.messenger.support.widget.RecyclerView;
 import org.telegram.tgnet.TLRPC;
@@ -1507,8 +1507,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             str = preferences.getString("color", "");
             if (str != null && str.length() > 0) {
                 String[] args = str.split(",");
-                for (int a = 0; a < args.length; a++) {
-                    String arg = args[a];
+                for (String arg : args) {
                     String[] args2 = arg.split("=");
                     emojiColor.put(args2[0], args2[1]);
                 }

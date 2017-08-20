@@ -30,8 +30,10 @@ import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
+
 import org.telegram.messenger.exoplayer2.text.Cue;
 import org.telegram.messenger.exoplayer2.util.ParsableByteArray;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

@@ -39,8 +39,7 @@ public class VoIPPermissionActivity extends Activity{
 							finish();
 						}
 					});
-					return;
-				}else{
+                }else{
 					finish();
 				}
 			}

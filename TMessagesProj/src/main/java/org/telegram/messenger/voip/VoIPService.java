@@ -10,7 +10,6 @@ package org.telegram.messenger.voip;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -34,7 +33,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioFormat;
 import android.media.AudioManager;
-import android.media.AudioRecord;
 import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -49,10 +47,8 @@ import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationManagerCompat;
 import android.telephony.TelephonyManager;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.KeyEvent;
 
 import org.telegram.messenger.AndroidUtilities;
@@ -1441,11 +1437,7 @@ public class VoIPService extends Service implements VoIPController.ConnectionSta
 
 	@Override
 	public void onAudioFocusChange(int focusChange) {
-		if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-			haveAudioFocus = true;
-		} else {
-			haveAudioFocus = false;
-		}
+        haveAudioFocus = focusChange == AudioManager.AUDIOFOCUS_GAIN;
 	}
 
 	public void onUIForegroundStateChanged(boolean isForeground) {

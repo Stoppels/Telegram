@@ -87,7 +87,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             }
             createNotification(messageObject);
         } catch (Exception e) {
-            e.printStackTrace();
+            FileLog.e(e);
         }
         return START_STICKY;
     }

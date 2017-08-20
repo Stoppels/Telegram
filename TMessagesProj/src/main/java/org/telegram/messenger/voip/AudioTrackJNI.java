@@ -2,17 +2,10 @@ package org.telegram.messenger.voip;
 
 import android.media.AudioFormat;
 import android.media.AudioManager;
-import android.media.AudioRecord;
 import android.media.AudioTrack;
-import android.media.MediaRecorder;
-import android.media.audiofx.AutomaticGainControl;
-import android.media.audiofx.NoiseSuppressor;
-import android.os.Build;
 import android.util.Log;
 
 import org.telegram.messenger.FileLog;
-
-import java.nio.ByteBuffer;
 
 /**
  * Created by grishka on 20.12.16.

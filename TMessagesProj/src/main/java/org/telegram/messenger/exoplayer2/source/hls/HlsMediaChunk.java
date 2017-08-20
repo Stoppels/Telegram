@@ -16,6 +16,7 @@
 package org.telegram.messenger.exoplayer2.source.hls;
 
 import android.text.TextUtils;
+
 import org.telegram.messenger.exoplayer2.extractor.DefaultExtractorInput;
 import org.telegram.messenger.exoplayer2.extractor.Extractor;
 import org.telegram.messenger.exoplayer2.extractor.ExtractorInput;
@@ -33,6 +34,7 @@ import org.telegram.messenger.exoplayer2.upstream.DataSource;
 import org.telegram.messenger.exoplayer2.upstream.DataSpec;
 import org.telegram.messenger.exoplayer2.util.MimeTypes;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 

@@ -140,29 +140,29 @@ public class ThemeDescription {
     public void setColor(int color, boolean useDefault) {
         Theme.setColor(currentKey, color, useDefault);
         if (paintToUpdate != null) {
-            for (int a = 0; a < paintToUpdate.length; a++) {
-                if ((changeFlags & FLAG_LINKCOLOR) != 0 && paintToUpdate[a] instanceof TextPaint) {
-                    ((TextPaint) paintToUpdate[a]).linkColor = color;
+            for (Paint aPaintToUpdate : paintToUpdate) {
+                if ((changeFlags & FLAG_LINKCOLOR) != 0 && aPaintToUpdate instanceof TextPaint) {
+                    ((TextPaint) aPaintToUpdate).linkColor = color;
                 } else {
-                    paintToUpdate[a].setColor(color);
+                    aPaintToUpdate.setColor(color);
                 }
             }
         }
         if (drawablesToUpdate != null) {
-            for (int a = 0; a < drawablesToUpdate.length; a++) {
-                if (drawablesToUpdate[a] == null) {
+            for (Drawable aDrawablesToUpdate : drawablesToUpdate) {
+                if (aDrawablesToUpdate == null) {
                     continue;
                 }
-                if (drawablesToUpdate[a] instanceof CombinedDrawable) {
+                if (aDrawablesToUpdate instanceof CombinedDrawable) {
                     if ((changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
-                        ((CombinedDrawable) drawablesToUpdate[a]).getBackground().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                        ((CombinedDrawable) aDrawablesToUpdate).getBackground().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
                     } else {
-                        ((CombinedDrawable) drawablesToUpdate[a]).getIcon().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                        ((CombinedDrawable) aDrawablesToUpdate).getIcon().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
                     }
-                } else if (drawablesToUpdate[a] instanceof AvatarDrawable) {
-                    ((AvatarDrawable) drawablesToUpdate[a]).setColor(color);
+                } else if (aDrawablesToUpdate instanceof AvatarDrawable) {
+                    ((AvatarDrawable) aDrawablesToUpdate).setColor(color);
                 } else {
-                    drawablesToUpdate[a].setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                    aDrawablesToUpdate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
                 }
             }
         }
@@ -439,8 +439,8 @@ public class ThemeDescription {
                                     if ((changeFlags & FLAG_IMAGECOLOR) != 0) {
                                         Drawable[] drawables = ((TextView) object).getCompoundDrawables();
                                         if (drawables != null) {
-                                            for (int a = 0; a < drawables.length; a++) {
-                                                drawables[a].setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                                            for (Drawable drawable : drawables) {
+                                                drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
                                             }
                                         }
                                     } else if ((changeFlags & FLAG_LINKCOLOR) != 0) {

@@ -1,10 +1,7 @@
 package org.telegram.ui.Components.Paint;
 
 import android.graphics.RectF;
-import android.os.Handler;
-import android.os.HandlerThread;
 
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
@@ -89,7 +86,6 @@ public class Slice {
                     break;
                 }
                 else if (inflater.needsInput()) {
-                    continue;
                 }
             }
 

@@ -24,8 +24,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 import android.util.SparseIntArray;
+
 import org.telegram.messenger.exoplayer2.util.MimeTypes;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -276,12 +278,9 @@ public final class MediaCodecUtil {
       return false;
     }
     // VP8 decoder on Samsung Galaxy S4 cannot be queried.
-    if (Util.SDK_INT <= 19 && Util.DEVICE.startsWith("jflte")
-        && "OMX.qcom.video.decoder.vp8".equals(name)) {
-      return false;
-    }
+      return !(Util.SDK_INT <= 19 && Util.DEVICE.startsWith("jflte")
+              && "OMX.qcom.video.decoder.vp8".equals(name));
 
-    return true;
   }
 
   /**

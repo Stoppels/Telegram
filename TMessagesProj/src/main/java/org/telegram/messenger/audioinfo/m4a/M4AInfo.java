@@ -18,6 +18,7 @@ package org.telegram.messenger.audioinfo.m4a;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.messenger.audioinfo.mp3.ID3v1Genre;
 
@@ -237,7 +238,7 @@ public class M4AInfo extends AudioInfo {
                         }
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+					FileLog.e(e);
                 }
 				break;
 			case "cpil":

@@ -33,22 +33,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.IdenticonDrawable;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.URLSpanReplacement;
 
 public class IdenticonActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -313,20 +313,19 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         obs.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
-                if (fragmentView == null) {
-                    return true;
-                }
-                fragmentView.getViewTreeObserver().removeOnPreDrawListener(this);
-                WindowManager manager = (WindowManager) ApplicationLoader.applicationContext.getSystemService(Context.WINDOW_SERVICE);
-                int rotation = manager.getDefaultDisplay().getRotation();
+                if (fragmentView != null) {
+                    fragmentView.getViewTreeObserver().removeOnPreDrawListener(this);
+                    WindowManager manager = (WindowManager) ApplicationLoader.applicationContext.getSystemService(Context.WINDOW_SERVICE);
+                    int rotation = manager.getDefaultDisplay().getRotation();
 
-                if (rotation == Surface.ROTATION_270 || rotation == Surface.ROTATION_90) {
-                    linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-                } else {
-                    linearLayout.setOrientation(LinearLayout.VERTICAL);
-                }
+                    if (rotation == Surface.ROTATION_270 || rotation == Surface.ROTATION_90) {
+                        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                    } else {
+                        linearLayout.setOrientation(LinearLayout.VERTICAL);
+                    }
 
-                fragmentView.setPadding(fragmentView.getPaddingLeft(), 0, fragmentView.getPaddingRight(), fragmentView.getPaddingBottom());
+                    fragmentView.setPadding(fragmentView.getPaddingLeft(), 0, fragmentView.getPaddingRight(), fragmentView.getPaddingBottom());
+                }
                 return true;
             }
         });

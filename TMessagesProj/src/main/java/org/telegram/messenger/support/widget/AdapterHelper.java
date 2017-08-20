@@ -51,11 +51,11 @@ class AdapterHelper implements OpReorderer.Callback {
 
     private static final String TAG = "AHT";
 
-    private Pools.Pool<UpdateOp> mUpdateOpPool = new Pools.SimplePool<UpdateOp>(UpdateOp.POOL_SIZE);
+    private Pools.Pool<UpdateOp> mUpdateOpPool = new Pools.SimplePool<>(UpdateOp.POOL_SIZE);
 
-    final ArrayList<UpdateOp> mPendingUpdates = new ArrayList<UpdateOp>();
+    final ArrayList<UpdateOp> mPendingUpdates = new ArrayList<>();
 
-    final ArrayList<UpdateOp> mPostponedList = new ArrayList<UpdateOp>();
+    final ArrayList<UpdateOp> mPostponedList = new ArrayList<>();
 
     final Callback mCallback;
 

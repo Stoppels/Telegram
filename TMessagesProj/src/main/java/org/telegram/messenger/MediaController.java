@@ -1155,14 +1155,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     String title = cursor.getString(4);
                     int photoW = 0;
                     int photoH = 0;
+                    String screenshot = "screenshot";
                     if (Build.VERSION.SDK_INT >= 16) {
                         photoW = cursor.getInt(5);
                         photoH = cursor.getInt(6);
                     }
-                    if (data != null && data.toLowerCase().contains("screenshot") ||
-                            display_name != null && display_name.toLowerCase().contains("screenshot") ||
-                            album_name != null && album_name.toLowerCase().contains("screenshot") ||
-                            title != null && title.toLowerCase().contains("screenshot")) {
+                    if (data != null && data.toLowerCase().contains(screenshot) ||
+                            display_name != null && display_name.toLowerCase().contains(screenshot) ||
+                            album_name != null && album_name.toLowerCase().contains(screenshot) ||
+                            title != null && title.toLowerCase().contains(screenshot)) {
                         try {
                             if (photoW == 0 || photoH == 0) {
                                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
@@ -3051,7 +3052,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             output = new FileOutputStream(f);
             byte[] buffer = new byte[1024 * 20];
             int len;
-            while ((len = inputStream.read(buffer)) != -1) {
+            while ((len = inputStream != null ? inputStream.read(buffer) : 0) != -1) {
                 output.write(buffer, 0, len);
             }
             return f.getAbsolutePath();

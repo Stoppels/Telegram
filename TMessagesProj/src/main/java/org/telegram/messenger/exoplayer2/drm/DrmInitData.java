@@ -17,10 +17,12 @@ package org.telegram.messenger.exoplayer2.drm;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.drm.DrmInitData.SchemeData;
 import org.telegram.messenger.exoplayer2.util.Assertions;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -112,13 +114,10 @@ public final class DrmInitData implements Comparator<SchemeData>, Parcelable {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null || getClass() != obj.getClass()) {
-      return false;
-    }
-    return Arrays.equals(schemeDatas, ((DrmInitData) obj).schemeDatas);
+      if (this == obj) {
+          return true;
+      }
+      return !(obj == null || getClass() != obj.getClass()) && Arrays.equals(schemeDatas, ((DrmInitData) obj).schemeDatas);
   }
 
   @Override

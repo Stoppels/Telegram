@@ -49,12 +49,12 @@ public class CropState {
 
     public float getX() {
         updateValues();
-        return values[matrix.MTRANS_X];
+        return values[Matrix.MTRANS_X];
     }
 
     public float getY() {
         updateValues();
-        return values[matrix.MTRANS_Y];
+        return values[Matrix.MTRANS_Y];
     }
 
     public void scale(float s, float pivotX, float pivotY) {

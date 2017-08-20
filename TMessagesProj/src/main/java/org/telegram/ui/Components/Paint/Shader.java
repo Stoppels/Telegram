@@ -2,7 +2,6 @@ package org.telegram.ui.Components.Paint;
 
 import android.graphics.Color;
 import android.opengl.GLES20;
-import android.util.Log;
 
 import org.telegram.messenger.FileLog;
 

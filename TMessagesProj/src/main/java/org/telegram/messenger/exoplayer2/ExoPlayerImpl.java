@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+
 import org.telegram.messenger.exoplayer2.ExoPlayerImplInternal.PlaybackInfo;
 import org.telegram.messenger.exoplayer2.ExoPlayerImplInternal.SourceInfo;
 import org.telegram.messenger.exoplayer2.ExoPlayerImplInternal.TrackInfo;
@@ -30,6 +31,7 @@ import org.telegram.messenger.exoplayer2.trackselection.TrackSelectionArray;
 import org.telegram.messenger.exoplayer2.trackselection.TrackSelector;
 import org.telegram.messenger.exoplayer2.util.Assertions;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**

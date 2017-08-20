@@ -55,26 +55,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.query.DraftQuery;
 import org.telegram.messenger.query.MessagesQuery;
 import org.telegram.messenger.query.StickersQuery;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
@@ -594,7 +594,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     if (keyEvent.getAction() == 1) {
                         if (currentPopupContentType == 1 && botButtonsMessageObject != null) {
                             SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-                            preferences.edit().putInt("hidekeyboard_" + dialog_id, botButtonsMessageObject.getId()).commit();
+                            preferences.edit().putInt("hidekeyboard_" + dialog_id, botButtonsMessageObject.getId()).apply();
                         }
                         showPopup(0, 0);
                         removeGifFromInputField();
@@ -715,11 +715,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         if (!isPopupShowing() || currentPopupContentType != 1) {
                             showPopup(1, 1);
                             SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-                            preferences.edit().remove("hidekeyboard_" + dialog_id).commit();
+                            preferences.edit().remove("hidekeyboard_" + dialog_id).apply();
                         } else {
                             if (currentPopupContentType == 1 && botButtonsMessageObject != null) {
                                 SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-                                preferences.edit().putInt("hidekeyboard_" + dialog_id, botButtonsMessageObject.getId()).commit();
+                                preferences.edit().putInt("hidekeyboard_" + dialog_id, botButtonsMessageObject.getId()).apply();
                             }
                             openKeyboardInternal();
                         }
@@ -748,7 +748,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 public void onClick(View v) {
                     silent = !silent;
                     notifyButton.setImageResource(silent ? R.drawable.notify_members_off : R.drawable.notify_members_on);
-                    ApplicationLoader.applicationContext.getSharedPreferences("Notifications", Activity.MODE_PRIVATE).edit().putBoolean("silent_" + dialog_id, silent).commit();
+                    ApplicationLoader.applicationContext.getSharedPreferences("Notifications", Activity.MODE_PRIVATE).edit().putBoolean("silent_" + dialog_id, silent).apply();
                     NotificationsController.updateServerNotificationsSettings(dialog_id);
                     try {
                         if (visibleToast != null) {
@@ -2017,8 +2017,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     SpannableStringBuilder stringBuilder = new SpannableStringBuilder(editingMessageObject.messageText);
                     Object spansToRemove[] = stringBuilder.getSpans(0, stringBuilder.length(), Object.class);
                     if (spansToRemove != null && spansToRemove.length > 0) {
-                        for (int a = 0; a < spansToRemove.length; a++) {
-                            stringBuilder.removeSpan(spansToRemove[a]);
+                        for (Object aSpansToRemove : spansToRemove) {
+                            stringBuilder.removeSpan(aSpansToRemove);
                         }
                     }
                     if (entities != null) {
@@ -2271,7 +2271,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     } else if (botButtonsMessageObject.messageOwner.reply_markup.single_use) {
                         openKeyboardInternal();
                         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-                        preferences.edit().putInt("answered_" + dialog_id, botButtonsMessageObject.getId()).commit();
+                        preferences.edit().putInt("answered_" + dialog_id, botButtonsMessageObject.getId()).apply();
                     }
                     if (delegate != null) {
                         delegate.onMessageSend(null);
@@ -2646,7 +2646,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         if (isPopupShowing()) {
             if (currentPopupContentType == 1 && byBackButton && botButtonsMessageObject != null) {
                 SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-                preferences.edit().putInt("hidekeyboard_" + dialog_id, botButtonsMessageObject.getId()).commit();
+                preferences.edit().putInt("hidekeyboard_" + dialog_id, botButtonsMessageObject.getId()).apply();
             }
             showPopup(0, 0);
             removeGifFromInputField();
@@ -2718,10 +2718,10 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         if (height > AndroidUtilities.dp(50) && keyboardVisible && !AndroidUtilities.isInMultiwindow) {
             if (isWidthGreater) {
                 keyboardHeightLand = height;
-                ApplicationLoader.applicationContext.getSharedPreferences("emoji", 0).edit().putInt("kbd_height_land3", keyboardHeightLand).commit();
+                ApplicationLoader.applicationContext.getSharedPreferences("emoji", 0).edit().putInt("kbd_height_land3", keyboardHeightLand).apply();
             } else {
                 keyboardHeight = height;
-                ApplicationLoader.applicationContext.getSharedPreferences("emoji", 0).edit().putInt("kbd_height", keyboardHeight).commit();
+                ApplicationLoader.applicationContext.getSharedPreferences("emoji", 0).edit().putInt("kbd_height", keyboardHeight).apply();
             }
         }
 

@@ -103,7 +103,7 @@ public class NotificationBadge {
 
         @Override
         public List<String> getSupportLaunchers() {
-            return Arrays.asList("com.anddoes.launcher");
+            return Collections.singletonList("com.anddoes.launcher");
         }
     }
 
@@ -133,7 +133,7 @@ public class NotificationBadge {
 
         @Override
         public List<String> getSupportLaunchers() {
-            return Arrays.asList("com.asus.launcher");
+            return Collections.singletonList("com.asus.launcher");
         }
     }
 
@@ -189,7 +189,7 @@ public class NotificationBadge {
 
         @Override
         public List<String> getSupportLaunchers() {
-            return Arrays.asList(
+            return Collections.singletonList(
                     "com.huawei.android.launcher"
             );
         }
@@ -228,7 +228,7 @@ public class NotificationBadge {
 
         @Override
         public List<String> getSupportLaunchers() {
-            return Arrays.asList("com.htc.launcher");
+            return Collections.singletonList("com.htc.launcher");
         }
     }
 
@@ -248,7 +248,7 @@ public class NotificationBadge {
 
         @Override
         public List<String> getSupportLaunchers() {
-            return Arrays.asList("com.teslacoilsw.launcher");
+            return Collections.singletonList("com.teslacoilsw.launcher");
         }
     }
 
@@ -636,7 +636,7 @@ public class NotificationBadge {
 
         @Override
         public List<String> getSupportLaunchers() {
-            return Arrays.asList("com.vivo.launcher");
+            return Collections.singletonList("com.vivo.launcher");
         }
     }
 

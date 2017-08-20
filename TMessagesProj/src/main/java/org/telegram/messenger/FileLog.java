@@ -79,7 +79,7 @@ public class FileLog {
             dir.mkdirs();
             getInstance().networkFile = new File(dir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_net.txt");
             return getInstance().networkFile.getAbsolutePath();
-        } catch (Throwable e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
@@ -200,8 +200,7 @@ public class FileLog {
         File dir = new File (sdCard.getAbsolutePath() + "/logs");
         File[] files = dir.listFiles();
         if (files != null) {
-            for (int a = 0; a < files.length; a++) {
-                File file = files[a];
+            for (File file : files) {
                 if (getInstance().currentFile != null && file.getAbsolutePath().equals(getInstance().currentFile.getAbsolutePath())) {
                     continue;
                 }

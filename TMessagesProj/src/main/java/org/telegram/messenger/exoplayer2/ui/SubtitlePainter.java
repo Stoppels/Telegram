@@ -30,6 +30,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
 import org.telegram.messenger.exoplayer2.text.CaptionStyleCompat;
 import org.telegram.messenger.exoplayer2.text.Cue;
 import org.telegram.messenger.exoplayer2.util.Util;

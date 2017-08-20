@@ -1402,8 +1402,8 @@ public class Theme {
             themesString = preferences.getString("themes", null);
             if (!TextUtils.isEmpty(themesString)) {
                 String[] themesArr = themesString.split("&");
-                for (int a = 0; a < themesArr.length; a++) {
-                    themeInfo = ThemeInfo.createWithString(themesArr[a]);
+                for (String aThemesArr : themesArr) {
+                    themeInfo = ThemeInfo.createWithString(aThemesArr);
                     if (themeInfo != null) {
                         otherThemes.add(themeInfo);
                         themes.add(themeInfo);
@@ -2150,9 +2150,9 @@ public class Theme {
     }
 
     public static void destroyResources() {
-        for (int a = 0; a < chat_attachButtonDrawables.length; a++) {
-            if (chat_attachButtonDrawables[a] != null) {
-                chat_attachButtonDrawables[a].setCallback(null);
+        for (Drawable chat_attachButtonDrawable : chat_attachButtonDrawables) {
+            if (chat_attachButtonDrawable != null) {
+                chat_attachButtonDrawable.setCallback(null);
             }
         }
     }

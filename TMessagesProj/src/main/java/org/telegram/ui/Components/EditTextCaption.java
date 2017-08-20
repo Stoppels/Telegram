@@ -77,8 +77,7 @@ public class EditTextCaption extends EditTextBoldCursor {
 
         TypefaceSpan spans[] = editable.getSpans(start, end, TypefaceSpan.class);
         if (spans != null && spans.length > 0) {
-            for (int a = 0; a < spans.length; a++) {
-                TypefaceSpan oldSpan = spans[a];
+            for (TypefaceSpan oldSpan : spans) {
                 int spanStart = editable.getSpanStart(oldSpan);
                 int spanEnd = editable.getSpanEnd(oldSpan);
                 editable.removeSpan(oldSpan);

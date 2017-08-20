@@ -61,6 +61,10 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
                 summedRatios += preferredSize.width / preferredSize.height;
             }
 
+            if (summedRatios == 0 ) {
+                summedRatios = 1;
+            }
+
             float rowSize = viewPortAvailableSize;
 
             if (rows.size() == 1 && a == rows.size() - 1) {
@@ -134,9 +138,9 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
 
         if (k >= n || n == 1) {
             ArrayList<ArrayList<Integer>> partition = new ArrayList<>(sequence.length);
-            for (int i = 0; i < sequence.length; i++) {
+            for (int aSequence : sequence) {
                 ArrayList<Integer> arrayList = new ArrayList<>(1);
-                arrayList.add(sequence[i]);
+                arrayList.add(aSequence);
                 partition.add(arrayList);
             }
             return partition;

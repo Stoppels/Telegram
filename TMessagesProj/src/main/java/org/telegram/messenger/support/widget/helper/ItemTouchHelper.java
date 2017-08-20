@@ -29,12 +29,6 @@ import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.VelocityTrackerCompat;
 import android.support.v4.view.ViewCompat;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.support.widget.LinearLayoutManager;
-import org.telegram.messenger.support.widget.RecyclerView;
-import org.telegram.messenger.support.widget.RecyclerView.OnItemTouchListener;
-import org.telegram.messenger.support.widget.RecyclerView.ViewHolder;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
@@ -44,6 +38,12 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewParent;
 import android.view.animation.Interpolator;
+
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.support.widget.LinearLayoutManager;
+import org.telegram.messenger.support.widget.RecyclerView;
+import org.telegram.messenger.support.widget.RecyclerView.OnItemTouchListener;
+import org.telegram.messenger.support.widget.RecyclerView.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,7 +167,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
      * This is necessary after swipe dismissing an item. We wait until animator finishes its job
      * to clean these views.
      */
-    final List<View> mPendingCleanup = new ArrayList<View>();
+    final List<View> mPendingCleanup = new ArrayList<>();
 
     /**
      * Re-use array to calculate dx dy for a ViewHolder
@@ -242,7 +242,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
      * Using framework animators has the side effect of clashing with ItemAnimator, creating
      * jumpy UIs.
      */
-    List<RecoverAnimation> mRecoverAnimations = new ArrayList<RecoverAnimation>();
+    List<RecoverAnimation> mRecoverAnimations = new ArrayList<>();
 
     private int mSlop;
 
@@ -769,8 +769,8 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
 
     private List<ViewHolder> findSwapTargets(ViewHolder viewHolder) {
         if (mSwapTargets == null) {
-            mSwapTargets = new ArrayList<ViewHolder>();
-            mDistances = new ArrayList<Integer>();
+            mSwapTargets = new ArrayList<>();
+            mDistances = new ArrayList<>();
         } else {
             mSwapTargets.clear();
             mDistances.clear();
@@ -1296,7 +1296,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
      * An interface which can be implemented by LayoutManager for better integration with
      * {@link ItemTouchHelper}.
      */
-    public static interface ViewDropHandler {
+    public interface ViewDropHandler {
 
         /**
          * Called by the {@link ItemTouchHelper} after a View is dropped over another View.
@@ -1317,7 +1317,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
          * @param y      The <code>top</code> offset of the View that is being dragged. This value
          *               includes the movement caused by the user.
          */
-        public void prepareForDrop(View view, View target, int x, int y);
+        void prepareForDrop(View view, View target, int x, int y);
     }
 
     /**

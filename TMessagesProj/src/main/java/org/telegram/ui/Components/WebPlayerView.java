@@ -227,8 +227,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                     throw new Exception(String.format("Premature end of parens in %s", expr));
                 }
             }
-            for (int a = 0; a < assign_operators.length; a++) {
-                String func = assign_operators[a];
+            for (String func : assign_operators) {
                 Matcher matcher = Pattern.compile(String.format(Locale.US, "(?x)(%s)(?:\\[([^\\]]+?)\\])?\\s*%s(.*)$", exprName, Pattern.quote(func))).matcher(expr);
                 if (!matcher.find()) {
                     continue;
@@ -282,8 +281,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 String argvals[];
                 if (arg_str.length() != 0) {
                     String[] args = arg_str.split(",");
-                    for (int a = 0; a < args.length; a++) {
-                        interpretExpression(args[a], localVars, allowRecursion);
+                    for (String arg : args) {
+                        interpretExpression(arg, localVars, allowRecursion);
                     }
                 }
                 return;
@@ -296,8 +295,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 return;
             }
 
-            for (int a = 0; a < operators.length; a++) {
-                String func = operators[a];
+            for (String func : operators) {
                 matcher = Pattern.compile(String.format(Locale.US, "(.+?)%s(.+)", Pattern.quote(func))).matcher(expr);
                 if (!matcher.find()) {
                     continue;
@@ -370,13 +368,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
         private void buildFunction(String[] argNames, String funcCode) throws Exception {
             HashMap<String, String> localVars = new HashMap<>();
-            for (int a = 0; a < argNames.length; a++) {
-                localVars.put(argNames[a], "");
+            for (String argName : argNames) {
+                localVars.put(argName, "");
             }
             String stmts[] = funcCode.split(";");
             boolean abort[] = new boolean[1];
-            for (int a = 0; a < stmts.length; a++) {
-                interpretStatement(stmts[a], localVars, abort, 100);
+            for (String stmt : stmts) {
+                interpretStatement(stmt, localVars, abort, 100);
                 if (abort[0]) {
                     return;
                 }
@@ -561,18 +559,18 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
             boolean encrypted = false;
             String extra[] = new String[] {"", "&el=info", "&el=embedded", "&el=detailpage", "&el=vevo"};
-            for (int i = 0; i < extra.length; i++) {
-                String videoInfo = downloadUrlContent(this, "https://www.youtube.com/get_video_info?" + params + extra[i]);
+            for (String anExtra : extra) {
+                String videoInfo = downloadUrlContent(this, "https://www.youtube.com/get_video_info?" + params + anExtra);
                 if (isCancelled()) {
                     return null;
                 }
                 boolean exists = false;
                 if (videoInfo != null) {
                     String args[] = videoInfo.split("&");
-                    for (int a = 0; a < args.length; a++) {
-                        if (args[a].startsWith("dashmpd")) {
+                    for (String arg : args) {
+                        if (arg.startsWith("dashmpd")) {
                             exists = true;
-                            String args2[] = args[a].split("=");
+                            String args2[] = arg.split("=");
                             if (args2.length == 2) {
                                 try {
                                     result[0] = URLDecoder.decode(args2[1], "UTF-8");
@@ -580,8 +578,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                                     FileLog.e(e);
                                 }
                             }
-                        } else if (args[a].startsWith("use_cipher_signature")) {
-                            String args2[] = args[a].split("=");
+                        } else if (arg.startsWith("use_cipher_signature")) {
+                            String args2[] = arg.split("=");
                             if (args2.length == 2) {
                                 if (args2[1].toLowerCase().equals("true")) {
                                     encrypted = true;

@@ -91,9 +91,9 @@ public class AsyncListUtil<T> {
         mDataCallback = dataCallback;
         mViewCallback = viewCallback;
 
-        mTileList = new TileList<T>(mTileSize);
+        mTileList = new TileList<>(mTileSize);
 
-        ThreadUtil<T> threadUtil = new MessageThreadUtil<T>();
+        ThreadUtil<T> threadUtil = new MessageThreadUtil<>();
         mMainThreadProxy = threadUtil.getMainThreadProxy(mMainThreadCallback);
         mBackgroundProxy = threadUtil.getBackgroundProxy(mBackgroundCallback);
 
@@ -390,7 +390,7 @@ public class AsyncListUtil<T> {
                 mRecycledRoot = mRecycledRoot.mNext;
                 return result;
             }
-            return new TileList.Tile<T>(mTClass, mTileSize);
+            return new TileList.Tile<>(mTClass, mTileSize);
         }
 
         private boolean isTileLoaded(int position) {

@@ -24,6 +24,7 @@ import android.media.MediaFormat;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
+
 import org.telegram.messenger.exoplayer2.BaseRenderer;
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.ExoPlaybackException;
@@ -40,6 +41,7 @@ import org.telegram.messenger.exoplayer2.util.Assertions;
 import org.telegram.messenger.exoplayer2.util.NalUnitUtil;
 import org.telegram.messenger.exoplayer2.util.TraceUtil;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;

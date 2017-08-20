@@ -68,7 +68,7 @@ public class BetterRatingView extends View{
 		listener=l;
 	}
 
-	public static interface OnRatingChangeListener{
-		public void onRatingChanged(int newRating);
+	public interface OnRatingChangeListener{
+		void onRatingChanged(int newRating);
 	}
 }

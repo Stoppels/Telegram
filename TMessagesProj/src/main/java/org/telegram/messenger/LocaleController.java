@@ -535,15 +535,13 @@ public class LocaleController {
                 } else {
                     newLocale = new Locale(args[0], args[1]);
                 }
-                if (newLocale != null) {
-                    if (override) {
-                        languageOverride = localeInfo.shortName;
+                if (override) {
+                    languageOverride = localeInfo.shortName;
 
-                        SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("language", localeInfo.shortName);
-                        editor.commit();
-                    }
+                    SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("language", localeInfo.shortName);
+                    editor.commit();
                 }
             } else {
                 newLocale = systemDefaultLocale;

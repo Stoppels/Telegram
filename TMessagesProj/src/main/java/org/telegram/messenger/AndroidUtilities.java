@@ -45,6 +45,7 @@ import android.os.Handler;
 import android.provider.CallLog;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.EdgeEffectCompat;
@@ -194,7 +195,8 @@ public class AndroidUtilities {
         double bf = b / 255.0;
         double max = (rf > gf && rf > bf) ? rf : (gf > bf) ? gf : bf;
         double min = (rf < gf && rf < bf) ? rf : (gf < bf) ? gf : bf;
-        double h, s;
+        double h;
+        double s;
         double d = max - min;
         s = max == 0 ? 0 : d / max;
         if (max == min) {
@@ -560,7 +562,7 @@ public class AndroidUtilities {
     }
 
     public static long makeBroadcastId(int id) {
-        return 0x0000000100000000L | ((long)id & 0x00000000FFFFFFFFL);
+        return 0x0000000100000000L | ((long) id & 0x00000000FFFFFFFFL);
     }
 
     public static int getMyLayerVersion(int layer) {
@@ -681,8 +683,7 @@ public class AndroidUtilities {
         phone = PhoneFormat.stripExceptNumbers(phone);
         int checkStart = 0;
         int index;
-        for (int a = 0; a < args.length; a++) {
-            String arg = args[a];
+        for (String arg : args) {
             if (!TextUtils.isEmpty(arg)) {
                 if ((index = phone.indexOf(arg, checkStart)) == -1) {
                     return false;
@@ -1319,7 +1320,7 @@ public class AndroidUtilities {
         return null;
     }
 
-    public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+    private static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
 
         Cursor cursor = null;
         final String column = "_data";
@@ -1347,15 +1348,15 @@ public class AndroidUtilities {
         return null;
     }
 
-    public static boolean isExternalStorageDocument(Uri uri) {
+    private static boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
-    public static boolean isDownloadsDocument(Uri uri) {
+    private static boolean isDownloadsDocument(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
-    public static boolean isMediaDocument(Uri uri) {
+    private static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
@@ -1469,14 +1470,20 @@ public class AndroidUtilities {
     }
 
     public static boolean copyFile(InputStream sourceFile, File destFile) throws IOException {
-        OutputStream out = new FileOutputStream(destFile);
+        OutputStream out = null;
         byte[] buf = new byte[4096];
         int len;
-        while ((len = sourceFile.read(buf)) > 0) {
-            Thread.yield();
-            out.write(buf, 0, len);
+        try {
+            out = new FileOutputStream(destFile);
+            while ((len = sourceFile.read(buf)) > 0) {
+                Thread.yield();
+                out.write(buf, 0, len);
+            }
+        } catch(IOException e) {
+            e.getLocalizedMessage();
+        } finally {
+            out.close();
         }
-        out.close();
         return true;
     }
 

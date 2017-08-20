@@ -218,9 +218,9 @@ public class ContactsController {
         Account[] accounts;
         try {
             accounts = am.getAccountsByType("org.telegram.account");
-            if (accounts != null && accounts.length > 0) {
-                for (int a = 0; a < accounts.length; a++) {
-                    am.removeAccount(accounts[a], null, null);
+            if (accounts.length > 0) {
+                for (Account account : accounts) {
+                    am.removeAccount(account, null, null);
                 }
             }
         } catch (Exception e) {
@@ -248,8 +248,8 @@ public class ContactsController {
         }
         if (recreateAccount) {
             try {
-                for (int a = 0; a < accounts.length; a++) {
-                    am.removeAccount(accounts[a], null, null);
+                for (Account account : accounts) {
+                    am.removeAccount(account, null, null);
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -269,11 +269,11 @@ public class ContactsController {
         try {
             AccountManager am = AccountManager.get(ApplicationLoader.applicationContext);
             Account[] accounts = am.getAccountsByType("org.telegram.messenger");
-            for (int a = 0; a < accounts.length; a++) {
-                am.removeAccount(accounts[a], null, null);
+            for (Account account : accounts) {
+                am.removeAccount(account, null, null);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            FileLog.e(e);
         }
     }
 
@@ -1621,7 +1621,7 @@ public class ContactsController {
         query.add(builder.build());
         try {
             ContentProviderResult[] result = contentResolver.applyBatch(ContactsContract.AUTHORITY, query);
-            if (result != null && result.length > 0 && result[0].uri != null) {
+            if (result.length > 0 && result[0].uri != null) {
                 res = Long.parseLong(result[0].uri.getLastPathSegment());
             }
         } catch (Exception e) {

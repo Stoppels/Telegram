@@ -28,7 +28,7 @@ class TileList<T> {
     final int mTileSize;
 
     // Keyed by start position.
-    private final SparseArray<Tile<T>> mTiles = new SparseArray<Tile<T>>(10);
+    private final SparseArray<Tile<T>> mTiles = new SparseArray<>(10);
 
     Tile<T> mLastAccessedTile;
 

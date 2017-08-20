@@ -16,13 +16,6 @@
 
 package org.telegram.messenger.support.widget;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
-import static org.telegram.messenger.support.widget.LayoutState.ITEM_DIRECTION_HEAD;
-import static org.telegram.messenger.support.widget.LayoutState.ITEM_DIRECTION_TAIL;
-import static org.telegram.messenger.support.widget.LayoutState.LAYOUT_END;
-import static org.telegram.messenger.support.widget.LayoutState.LAYOUT_START;
-import static org.telegram.messenger.support.widget.RecyclerView.NO_POSITION;
-
 import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.Rect;
@@ -45,6 +38,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
+
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static org.telegram.messenger.support.widget.LayoutState.ITEM_DIRECTION_HEAD;
+import static org.telegram.messenger.support.widget.LayoutState.ITEM_DIRECTION_TAIL;
+import static org.telegram.messenger.support.widget.LayoutState.LAYOUT_END;
+import static org.telegram.messenger.support.widget.LayoutState.LAYOUT_START;
+import static org.telegram.messenger.support.widget.RecyclerView.NO_POSITION;
 
 /**
  * A LayoutManager that lays out children in a staggered grid formation.

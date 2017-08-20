@@ -22,12 +22,12 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.support.widget.LinearLayoutManager;
 import org.telegram.messenger.support.widget.RecyclerView;
@@ -382,7 +382,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             currentType = 0;
         } else if (type == 2 || type == -1 && currentMinus.size() > 0 && currentPlus.size() > 0) {
             currentType = 2;
-        } else if (type == 1 || type == -1 && currentPlus.size() > 0) {
+        } else if (type == 1 || currentPlus.size() > 0) {
             currentType = 1;
         }
         if (doneButton != null) {

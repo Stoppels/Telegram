@@ -16,6 +16,7 @@
 package org.telegram.messenger.exoplayer2.source.dash.manifest;
 
 import android.net.Uri;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.Format;
 import org.telegram.messenger.exoplayer2.source.dash.DashSegmentIndex;

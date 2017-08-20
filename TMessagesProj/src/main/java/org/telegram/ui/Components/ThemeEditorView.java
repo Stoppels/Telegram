@@ -831,8 +831,7 @@ public class ThemeEditorView {
 
             public ListAdapter(Context context, ThemeDescription[] descriptions) {
                 this.context = context;
-                for (int a = 0; a < descriptions.length; a++) {
-                    ThemeDescription description = descriptions[a];
+                for (ThemeDescription description : descriptions) {
                     String key = description.getCurrentKey();
                     ArrayList<ThemeDescription> arrayList = itemsMap.get(key);
                     if (arrayList == null) {

@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
@@ -692,16 +693,22 @@ public class ImageLoader {
                         }
 
                         if (useNativeWebpLoaded) {
-                            RandomAccessFile file = new RandomAccessFile(cacheFileFinal, "r");
-                            ByteBuffer buffer = file.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, cacheFileFinal.length());
+                            RandomAccessFile file = null;
+                            try {
+                                file = new RandomAccessFile(cacheFileFinal, "r");
+                                ByteBuffer buffer = file.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, cacheFileFinal.length());
 
-                            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                            bmOptions.inJustDecodeBounds = true;
-                            Utilities.loadWebpImage(null, buffer, buffer.limit(), bmOptions, true);
-                            image = Bitmaps.createBitmap(bmOptions.outWidth, bmOptions.outHeight, Bitmap.Config.ARGB_8888);
+                                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                                bmOptions.inJustDecodeBounds = true;
+                                Utilities.loadWebpImage(null, buffer, buffer.limit(), bmOptions, true);
+                                image = Bitmaps.createBitmap(bmOptions.outWidth, bmOptions.outHeight, Bitmap.Config.ARGB_8888);
 
-                            Utilities.loadWebpImage(image, buffer, buffer.limit(), null, !opts.inPurgeable);
-                            file.close();
+                                Utilities.loadWebpImage(image, buffer, buffer.limit(), null, !opts.inPurgeable);
+                            } catch (IOException e) {
+                                e.getLocalizedMessage();
+                            } finally {
+                                file.close();
+                            }
                         } else {
                             if (opts.inPurgeable) {
                                 RandomAccessFile f = new RandomAccessFile(cacheFileFinal, "r");
@@ -1393,6 +1400,7 @@ public class ImageLoader {
                 dstFile = new File(to, "000000000_999999.mp4");
             }
             byte[] buffer = new byte[1024];
+            assert srcFile != null;
             srcFile.createNewFile();
             file = new RandomAccessFile(srcFile, "rws");
             file.write(buffer);
@@ -1400,6 +1408,7 @@ public class ImageLoader {
             file = null;
             boolean canRename = srcFile.renameTo(dstFile);
             srcFile.delete();
+            assert dstFile != null;
             dstFile.delete();
             if (canRename) {
                 return true;
@@ -2194,13 +2203,14 @@ public class ImageLoader {
         return b;
     }
 
-    public static void fillPhotoSizeWithBytes(TLRPC.PhotoSize photoSize) {
+    public static void fillPhotoSizeWithBytes(TLRPC.PhotoSize photoSize) throws IOException {
         if (photoSize == null || photoSize.bytes != null) {
             return;
         }
         File file = FileLoader.getPathToAttach(photoSize, true);
+        RandomAccessFile f = null;
         try {
-            RandomAccessFile f = new RandomAccessFile(file, "r");
+            f = new RandomAccessFile(file, "r");
             int len = (int) f.length();
             if (len < 20000) {
                 photoSize.bytes = new byte[(int) f.length()];
@@ -2208,6 +2218,10 @@ public class ImageLoader {
             }
         } catch (Throwable e) {
             FileLog.e(e);
+        } finally {
+            if (f != null) {
+                f.close();
+            }
         }
     }
 

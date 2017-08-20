@@ -32,9 +32,9 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LetterDrawable;
 import org.telegram.ui.Components.RadialProgress;
-import org.telegram.ui.ActionBar.Theme;
 
 import java.io.File;
 import java.util.ArrayList;

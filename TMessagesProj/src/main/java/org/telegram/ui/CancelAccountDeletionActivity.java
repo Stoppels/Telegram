@@ -115,9 +115,9 @@ public class CancelAccountDeletionActivity extends BaseFragment {
     @Override
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
-        for (int a = 0; a < views.length; a++) {
-            if (views[a] != null) {
-                views[a].onDestroyActivity();
+        for (SlideView view : views) {
+            if (view != null) {
+                view.onDestroyActivity();
             }
         }
         if (progressDialog != null) {

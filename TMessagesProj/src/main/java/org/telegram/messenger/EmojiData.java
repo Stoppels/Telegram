@@ -256,14 +256,14 @@ public class EmojiData {
     public static final HashMap<String, Boolean> emojiColoredMap = new HashMap<>(emojiColored.length);
 
     static {
-        for (int a = 0; a < emojiToFE0F.length; a++) {
-            emojiToFE0FMap.put(emojiToFE0F[a], true);
+        for (char anEmojiToFE0F : emojiToFE0F) {
+            emojiToFE0FMap.put(anEmojiToFE0F, true);
         }
-        for (int a = 0; a < dataChars.length; a++) {
-            dataCharsMap.put(dataChars[a], true);
+        for (char dataChar : dataChars) {
+            dataCharsMap.put(dataChar, true);
         }
-        for (int a = 0; a < emojiColored.length; a++) {
-            emojiColoredMap.put(emojiColored[a], true);
+        for (String anEmojiColored : emojiColored) {
+            emojiColoredMap.put(anEmojiColored, true);
         }
         dataColored[1] = data[1];
         dataColored[3] = data[3];

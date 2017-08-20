@@ -29,13 +29,22 @@ import java.util.ArrayList;
 public class CallingCodeInfo {
     public ArrayList<String> countries = new ArrayList<>();
     public String callingCode = "";
-    public ArrayList<String> trunkPrefixes = new ArrayList<>();
-    public ArrayList<String> intlPrefixes = new ArrayList<>();
+    static ArrayList<String> trunkPrefixes = new ArrayList<>();
+    static ArrayList<String> intlPrefixes = new ArrayList<>();
     public ArrayList<RuleSet> ruleSets = new ArrayList<>();
     //public ArrayList formatStrings;
 
-    String matchingAccessCode(String str) {
-        for (String code : intlPrefixes) {
+
+    public static ArrayList<String> getTrunkPrefixes() {
+        return trunkPrefixes;
+    }
+
+    public static ArrayList<String> getIntlPrefixes() {
+        return intlPrefixes;
+    }
+
+    String matchingCode(String str, ArrayList<String> prefixes) {
+        for (String code : prefixes) {
             if (str.startsWith(code)) {
                 return code;
             }
@@ -43,17 +52,7 @@ public class CallingCodeInfo {
         return null;
     }
 
-    String matchingTrunkCode(String str) {
-        for (String code : trunkPrefixes) {
-            if (str.startsWith(code)) {
-                return code;
-            }
-        }
-
-        return null;
-    }
-
-    String format(String orig) {
+    public String format(String orig) {
         String str = orig;
         String trunkPrefix = null;
         String intlPrefix = null;
@@ -61,7 +60,7 @@ public class CallingCodeInfo {
             intlPrefix = callingCode;
             str = str.substring(intlPrefix.length());
         } else {
-            String trunk = matchingTrunkCode(str);
+            String trunk = matchingCode(str, CallingCodeInfo.getIntlPrefixes());
             if (trunk != null) {
                 trunkPrefix = trunk;
                 str = str.substring(trunkPrefix.length());
@@ -89,7 +88,7 @@ public class CallingCodeInfo {
         return orig;
     }
 
-    boolean isValidPhoneNumber(String orig) {
+    public boolean isValidPhoneNumber(String orig) {
         String str = orig;
         String trunkPrefix = null;
         String intlPrefix = null;
@@ -97,7 +96,7 @@ public class CallingCodeInfo {
             intlPrefix = callingCode;
             str = str.substring(intlPrefix.length());
         } else {
-            String trunk = matchingTrunkCode(str);
+            String trunk = matchingCode(str, CallingCodeInfo.getTrunkPrefixes());
             if (trunk != null) {
                 trunkPrefix = trunk;
                 str = str.substring(trunkPrefix.length());

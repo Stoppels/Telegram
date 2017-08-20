@@ -10,9 +10,9 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.Rect;
 import android.os.SystemClock;
 import android.text.Layout;
 import android.text.StaticLayout;

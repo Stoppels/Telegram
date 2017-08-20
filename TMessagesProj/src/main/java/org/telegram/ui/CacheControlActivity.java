@@ -150,11 +150,11 @@ public class CacheControlActivity extends BaseFragment {
             try {
                 File[] array = dir.listFiles();
                 if (array != null) {
-                    for (int a = 0; a < array.length; a++) {
+                    for (File anArray : array) {
                         if (canceled) {
                             return 0;
                         }
-                        File file = array[a];
+                        File file = anArray;
                         if (documentsMusicType == 1 || documentsMusicType == 2) {
                             String name = file.getName().toLowerCase();
                             if (name.endsWith(".mp3") || name.endsWith(".m4a")) {

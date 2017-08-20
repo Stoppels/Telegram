@@ -16,9 +16,6 @@
 
 package org.telegram.messenger.support.widget;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
-import static org.telegram.messenger.support.widget.RecyclerView.NO_POSITION;
-
 import android.content.Context;
 import android.graphics.PointF;
 import android.os.Parcel;
@@ -27,15 +24,18 @@ import android.support.annotation.RestrictTo;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityEventCompat;
 import android.support.v4.view.accessibility.AccessibilityRecordCompat;
-import org.telegram.messenger.support.widget.RecyclerView.LayoutParams;
-import org.telegram.messenger.support.widget.helper.ItemTouchHelper;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 
+import org.telegram.messenger.support.widget.RecyclerView.LayoutParams;
+import org.telegram.messenger.support.widget.helper.ItemTouchHelper;
+
 import java.util.List;
+
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static org.telegram.messenger.support.widget.RecyclerView.NO_POSITION;
 
 /**
  * A {@link org.telegram.messenger.support.widget.RecyclerView.LayoutManager} implementation which provides
@@ -314,6 +314,7 @@ public class LinearLayoutManager extends RecyclerView.LayoutManager implements
      *
      * @param orientation {@link #HORIZONTAL} or {@link #VERTICAL}
      */
+    @SuppressWarnings("JavadocReference")
     public void setOrientation(int orientation) {
         if (orientation != HORIZONTAL && orientation != VERTICAL) {
             throw new IllegalArgumentException("invalid orientation:" + orientation);
@@ -407,6 +408,7 @@ public class LinearLayoutManager extends RecyclerView.LayoutManager implements
      *
      * @return The extra space that should be laid out (in pixels).
      */
+    @SuppressWarnings("JavadocReference")
     protected int getExtraLayoutSpace(RecyclerView.State state) {
         if (state.hasTargetScrollPosition()) {
             return mOrientationHelper.getTotalSpace();
@@ -1431,6 +1433,7 @@ public class LinearLayoutManager extends RecyclerView.LayoutManager implements
      * @see #recycleViewsFromEnd(org.telegram.messenger.support.widget.RecyclerView.Recycler, int)
      * @see android.support.v7.widget.LinearLayoutManager.LayoutState#mLayoutDirection
      */
+    @SuppressWarnings("JavadocReference")
     private void recycleByLayoutState(RecyclerView.Recycler recycler, LayoutState layoutState) {
         if (!layoutState.mRecycle || layoutState.mInfinite) {
             return;
@@ -1453,6 +1456,7 @@ public class LinearLayoutManager extends RecyclerView.LayoutManager implements
      * @param stopOnFocusable If true, filling stops in the first focusable new child
      * @return Number of pixels that it added. Useful for scroll functions.
      */
+    @SuppressWarnings("JavadocReference")
     int fill(RecyclerView.Recycler recycler, LayoutState layoutState,
             RecyclerView.State state, boolean stopOnFocusable) {
         // max offset we should set is mFastScroll + available
@@ -1473,11 +1477,11 @@ public class LinearLayoutManager extends RecyclerView.LayoutManager implements
                 break;
             }
             layoutState.mOffset += layoutChunkResult.mConsumed * layoutState.mLayoutDirection;
-            /**
-             * Consume the available space if:
-             * * layoutChunk did not request to be ignored
-             * * OR we are laying out scrap children
-             * * OR we are not doing pre-layout
+            /*
+              Consume the available space if:
+              * layoutChunk did not request to be ignored
+              * OR we are laying out scrap children
+              * OR we are not doing pre-layout
              */
             if (!layoutChunkResult.mIgnoreConsumed || mLayoutState.mScrapList != null
                     || !state.isPreLayout()) {

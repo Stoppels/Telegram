@@ -978,9 +978,6 @@ public class NumberPicker extends LinearLayout {
                 invalidate(0, mBottomSelectionDividerBottom, getRight(), getBottom());
             }
             mDecrementVirtualButtonPressed = false;
-            if (mDecrementVirtualButtonPressed) {
-                invalidate(0, 0, getRight(), mTopSelectionDividerTop);
-            }
         }
 
         public void buttonPressDelayed(int button) {

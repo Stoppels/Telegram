@@ -192,7 +192,7 @@ public class PagerSnapHelper extends SnapHelper {
                     + (helper.getDecoratedMeasurement(child) / 2);
             int absDistance = Math.abs(childCenter - center);
 
-            /** if child center is closer than previous closest, set it as closest  **/
+            /* if child center is closer than previous closest, set it as closest  **/
             if (absDistance < absClosest) {
                 absClosest = absDistance;
                 closestChild = child;
@@ -225,7 +225,7 @@ public class PagerSnapHelper extends SnapHelper {
             final View child = layoutManager.getChildAt(i);
             int childStart = helper.getDecoratedStart(child);
 
-            /** if child is more to start than previous closest, set it as closest  **/
+            /* if child is more to start than previous closest, set it as closest  **/
             if (childStart < startest) {
                 startest = childStart;
                 closestChild = child;

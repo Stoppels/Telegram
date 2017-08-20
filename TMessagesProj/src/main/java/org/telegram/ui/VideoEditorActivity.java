@@ -50,13 +50,13 @@ import com.googlecode.mp4parser.util.Matrix;
 import com.googlecode.mp4parser.util.Path;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.support.widget.LinearLayoutManager;
@@ -1610,8 +1610,8 @@ public class VideoEditorActivity extends BaseFragment implements NotificationCen
                     MediaHeaderBox mediaHeaderBox = mediaBox.getMediaHeaderBox();
                     SampleSizeBox sampleSizeBox = mediaBox.getMediaInformationBox().getSampleTableBox().getSampleSizeBox();
                     long[] sizes = sampleSizeBox.getSampleSizes();
-                    for (int a = 0; a < sizes.length; a++) {
-                        sampleSizes += sizes[a];
+                    for (long size : sizes) {
+                        sampleSizes += size;
                     }
                     videoDuration = (float) mediaHeaderBox.getDuration() / (float) mediaHeaderBox.getTimescale();
                     trackBitrate = (int) (sampleSizes * 8 / videoDuration);

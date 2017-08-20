@@ -8,7 +8,7 @@
 
 package org.telegram.ui.Components;
 
-import android.graphics.*;
+import android.graphics.Canvas;
 import android.view.View;
 
 import org.telegram.messenger.AndroidUtilities;

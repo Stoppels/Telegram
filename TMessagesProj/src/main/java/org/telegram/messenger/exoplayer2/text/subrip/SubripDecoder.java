@@ -19,10 +19,12 @@ import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
+
 import org.telegram.messenger.exoplayer2.text.Cue;
 import org.telegram.messenger.exoplayer2.text.SimpleSubtitleDecoder;
 import org.telegram.messenger.exoplayer2.util.LongArray;
 import org.telegram.messenger.exoplayer2.util.ParsableByteArray;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

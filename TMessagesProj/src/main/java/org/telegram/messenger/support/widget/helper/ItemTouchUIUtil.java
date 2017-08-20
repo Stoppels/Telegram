@@ -17,8 +17,9 @@
 package org.telegram.messenger.support.widget.helper;
 
 import android.graphics.Canvas;
-import org.telegram.messenger.support.widget.RecyclerView;
 import android.view.View;
+
+import org.telegram.messenger.support.widget.RecyclerView;
 
 /**
  * Utility class for {@link ItemTouchHelper} which handles item transformations for different

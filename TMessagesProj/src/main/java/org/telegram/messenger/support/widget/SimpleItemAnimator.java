@@ -2,13 +2,11 @@ package org.telegram.messenger.support.widget;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import org.telegram.messenger.support.widget.RecyclerView.Adapter;
-import org.telegram.messenger.support.widget.RecyclerView.ViewHolder;
-import org.telegram.messenger.support.widget.RecyclerView.ItemAnimator.ItemHolderInfo;
 import android.util.Log;
 import android.view.View;
 
-import java.util.List;
+import org.telegram.messenger.support.widget.RecyclerView.ViewHolder;
+import org.telegram.messenger.support.widget.RecyclerView.Adapter;
 
 /**
  * A wrapper class for ItemAnimator that records View bounds and decides whether it should run

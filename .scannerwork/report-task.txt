@@ -1,6 +1,6 @@
-projectKey=android:telegram
+projectKey=Telegram
 serverUrl=http://localhost:9000
 serverVersion=6.5.0.27846
-dashboardUrl=http://localhost:9000/dashboard/index/android:telegram
-ceTaskId=AV3sWL1FYef6yXyYWlcv
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AV3sWL1FYef6yXyYWlcv
+dashboardUrl=http://localhost:9000/dashboard/index/Telegram
+ceTaskId=AV38DhHWKaX1_RaBXZLY
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AV38DhHWKaX1_RaBXZLY

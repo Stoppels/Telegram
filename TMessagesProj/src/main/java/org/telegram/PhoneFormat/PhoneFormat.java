@@ -115,7 +115,7 @@ public class PhoneFormat {
             buffer = ByteBuffer.wrap(data);
             buffer.order(ByteOrder.LITTLE_ENDIAN);
         } catch (Exception e) {
-            e.printStackTrace();
+            FileLog.e(e);
             return;
         } finally {
             try {
@@ -149,7 +149,7 @@ public class PhoneFormat {
         initialzed = true;
     }
 
-    public String defaultCallingCode() {
+    public String returnDefaultCallingCode() {
         return callingCodeForCountryCode(defaultCountry);
     }
 
@@ -203,7 +203,7 @@ public class PhoneFormat {
                     return orig;
                 }
 
-                String accessCode = info.matchingAccessCode(str);
+                String accessCode = info.matchingCode(str, CallingCodeInfo.getTrunkPrefixes());
                 if (accessCode != null) {
                     String rest = str.substring(accessCode.length());
                     String phone = rest;
@@ -244,7 +244,7 @@ public class PhoneFormat {
                 return false;
             }
 
-            String accessCode = info.matchingAccessCode(str);
+            String accessCode = info.matchingCode(str, CallingCodeInfo.getTrunkPrefixes());
             if (accessCode != null) {
                 String rest = str.substring(accessCode.length());
                 if (rest.length() != 0) {
@@ -289,7 +289,7 @@ public class PhoneFormat {
             }
             return "";
         } catch (Exception e) {
-            e.printStackTrace();
+            FileLog.e(e);
             return "";
         }
     }
@@ -326,7 +326,7 @@ public class PhoneFormat {
                     strs.add(str);
                     offset += str.length() + 1;
                 }
-                res.trunkPrefixes = strs;
+                CallingCodeInfo.trunkPrefixes = strs;
                 offset++;
 
                 strs = new ArrayList<>(5);
@@ -334,7 +334,7 @@ public class PhoneFormat {
                     strs.add(str);
                     offset += str.length() + 1;
                 }
-                res.intlPrefixes = strs;
+                CallingCodeInfo.intlPrefixes = strs;
 
                 ArrayList<RuleSet> ruleSets = new ArrayList<>(setCnt);
                 offset = start + block1Len;

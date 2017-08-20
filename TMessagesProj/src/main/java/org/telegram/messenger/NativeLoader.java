@@ -182,7 +182,7 @@ public class NativeLoader {
                 return;
             }
         } catch (Throwable e) {
-            e.printStackTrace();
+            FileLog.e(e);
         }
 
         try {

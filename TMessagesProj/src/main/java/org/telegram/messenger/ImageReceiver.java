@@ -73,7 +73,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private boolean shouldGenerateQualityThumb;
     private boolean invalidateAll;
 
-    private int imageX, imageY, imageW, imageH;
+    private int imageX;
+    private int imageY;
+    private int imageW;
+    private int imageH;
     private Rect drawRegion = new Rect();
     private boolean isVisible = true;
     private boolean isAspectFit;
@@ -441,7 +444,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             if (shader != null) {
                 roundPaint.setShader(shader);
                 float scale = Math.min(scaleW, scaleH);
-                roundRect.set(imageX, imageY, imageX + imageW, imageY + imageH);
+                roundRect.set(imageX, imageY, (float) imageX + imageW, (float) imageY + imageH);
                 shaderMatrix.reset();
                 if (Math.abs(scaleW - scaleH) > 0.00001f) {
                     if (bitmapW / scaleH > imageW) {
@@ -456,7 +459,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                     if (Math.abs(scaleW - scaleH) > 0.00001f) {
                         int w = (int) Math.floor(imageW * scale);
                         int h = (int) Math.floor(imageH * scale);
-                        bitmapRect.set((bitmapW - w) / 2, (bitmapH - h) / 2, (bitmapW + w) / 2, (bitmapH + h) / 2);
+                        bitmapRect.set(((float) bitmapW - w) / 2, ((float) bitmapH - h) / 2, ((float) bitmapW + w) / 2, ((float) bitmapH + h) / 2);
                         shaderMatrix.setRectToRect(bitmapRect, roundRect, Matrix.ScaleToFit.START);
                     } else {
                         bitmapRect.set(0, 0, bitmapW, bitmapH);
@@ -496,7 +499,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
 
                         if (orientation % 360 != 0) {
                             if (centerRotation) {
-                                canvas.rotate(orientation, imageW / 2, imageH / 2);
+                                canvas.rotate(orientation, (float) imageW / 2, (float) imageH / 2);
                             } else {
                                 canvas.rotate(orientation, 0, 0);
                             }
@@ -543,7 +546,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                         canvas.save();
                         if (orientation % 360 != 0) {
                             if (centerRotation) {
-                                canvas.rotate(orientation, imageW / 2, imageH / 2);
+                                canvas.rotate(orientation, (float) imageW / 2, (float) imageH / 2);
                             } else {
                                 canvas.rotate(orientation, 0, 0);
                             }

@@ -18,6 +18,7 @@ package org.telegram.messenger.exoplayer2.text.ttml;
 import android.text.Layout;
 import android.util.Log;
 import android.util.Pair;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.text.Cue;
 import org.telegram.messenger.exoplayer2.text.SimpleSubtitleDecoder;
@@ -25,6 +26,10 @@ import org.telegram.messenger.exoplayer2.text.SubtitleDecoderException;
 import org.telegram.messenger.exoplayer2.util.ColorParser;
 import org.telegram.messenger.exoplayer2.util.Util;
 import org.telegram.messenger.exoplayer2.util.XmlPullParserUtil;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -32,9 +37,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 /**
  * A {@link SimpleSubtitleDecoder} for TTML supporting the DFXP presentation profile. Features

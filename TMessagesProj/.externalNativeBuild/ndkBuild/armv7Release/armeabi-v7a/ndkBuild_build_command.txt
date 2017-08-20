@@ -1,4 +1,4 @@
-Executable : /Users/ns/Library/Android/sdk/ndk-bundle/ndk-build
+Executable : /Users/ns/Library/Android/android-ndk-r14b/ndk-build
 arguments : 
 NDK_PROJECT_PATH=null
 APP_BUILD_SCRIPT=/Users/ns/Dev/Telegram/TMessagesProj/jni/Android.mk

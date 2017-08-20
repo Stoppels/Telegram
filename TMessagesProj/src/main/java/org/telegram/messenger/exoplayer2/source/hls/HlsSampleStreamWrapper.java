@@ -18,6 +18,7 @@ package org.telegram.messenger.exoplayer2.source.hls;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.SparseArray;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.Format;
 import org.telegram.messenger.exoplayer2.FormatHolder;
@@ -39,6 +40,7 @@ import org.telegram.messenger.exoplayer2.upstream.Allocator;
 import org.telegram.messenger.exoplayer2.upstream.Loader;
 import org.telegram.messenger.exoplayer2.util.Assertions;
 import org.telegram.messenger.exoplayer2.util.MimeTypes;
+
 import java.io.IOException;
 import java.util.LinkedList;
 

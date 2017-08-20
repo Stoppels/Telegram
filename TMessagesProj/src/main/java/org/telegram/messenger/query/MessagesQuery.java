@@ -14,12 +14,12 @@ import android.text.TextUtils;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
@@ -584,8 +584,7 @@ public class MessagesQuery {
             Spannable spannable = (Spannable) message[0];
             TypefaceSpan spans[] = spannable.getSpans(0, message[0].length(), TypefaceSpan.class);
             if (spans != null && spans.length > 0) {
-                for (int a = 0; a < spans.length; a++) {
-                    TypefaceSpan span = spans[a];
+                for (TypefaceSpan span : spans) {
                     int spanStart = spannable.getSpanStart(span);
                     int spanEnd = spannable.getSpanEnd(span);
                     if (checkInclusion(spanStart, entities) || checkInclusion(spanEnd, entities) || checkIntersection(spanStart, spanEnd, entities)) {
@@ -611,12 +610,12 @@ public class MessagesQuery {
                 if (entities == null) {
                     entities = new ArrayList<>();
                 }
-                for (int b = 0; b < spansMentions.length; b++) {
+                for (URLSpanUserMention spansMention : spansMentions) {
                     TLRPC.TL_inputMessageEntityMentionName entity = new TLRPC.TL_inputMessageEntityMentionName();
-                    entity.user_id = MessagesController.getInputUser(Utilities.parseInt(spansMentions[b].getURL()));
+                    entity.user_id = MessagesController.getInputUser(Utilities.parseInt(spansMention.getURL()));
                     if (entity.user_id != null) {
-                        entity.offset = spannable.getSpanStart(spansMentions[b]);
-                        entity.length = Math.min(spannable.getSpanEnd(spansMentions[b]), message[0].length()) - entity.offset;
+                        entity.offset = spannable.getSpanStart(spansMention);
+                        entity.length = Math.min(spannable.getSpanEnd(spansMention), message[0].length()) - entity.offset;
                         if (message[0].charAt(entity.offset + entity.length - 1) == ' ') {
                             entity.length--;
                         }

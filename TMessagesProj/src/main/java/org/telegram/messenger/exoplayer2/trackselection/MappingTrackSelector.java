@@ -18,11 +18,13 @@ package org.telegram.messenger.exoplayer2.trackselection;
 import android.util.Pair;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
+
 import org.telegram.messenger.exoplayer2.ExoPlaybackException;
 import org.telegram.messenger.exoplayer2.RendererCapabilities;
 import org.telegram.messenger.exoplayer2.source.TrackGroup;
 import org.telegram.messenger.exoplayer2.source.TrackGroupArray;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -470,15 +472,15 @@ public abstract class MappingTrackSelector extends TrackSelector {
     public int getRendererSupport(int rendererIndex) {
       boolean hasTracks = false;
       int[][] rendererFormatSupport = formatSupport[rendererIndex];
-      for (int i = 0; i < rendererFormatSupport.length; i++) {
-        for (int j = 0; j < rendererFormatSupport[i].length; j++) {
-          hasTracks = true;
-          if ((rendererFormatSupport[i][j] & RendererCapabilities.FORMAT_SUPPORT_MASK)
-              == RendererCapabilities.FORMAT_HANDLED) {
-            return RENDERER_SUPPORT_PLAYABLE_TRACKS;
-          }
+        for (int[] aRendererFormatSupport : rendererFormatSupport) {
+            for (int j = 0; j < aRendererFormatSupport.length; j++) {
+                hasTracks = true;
+                if ((aRendererFormatSupport[j] & RendererCapabilities.FORMAT_SUPPORT_MASK)
+                        == RendererCapabilities.FORMAT_HANDLED) {
+                    return RENDERER_SUPPORT_PLAYABLE_TRACKS;
+                }
+            }
         }
-      }
       return hasTracks ? RENDERER_SUPPORT_UNPLAYABLE_TRACKS : RENDERER_SUPPORT_NO_TRACKS;
     }
 

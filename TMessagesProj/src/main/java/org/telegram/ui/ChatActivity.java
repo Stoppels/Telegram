@@ -65,58 +65,62 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.PhoneFormat.PhoneFormat;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.query.BotQuery;
 import org.telegram.messenger.query.DraftQuery;
-import org.telegram.messenger.query.MessagesSearchQuery;
 import org.telegram.messenger.query.MessagesQuery;
+import org.telegram.messenger.query.MessagesSearchQuery;
 import org.telegram.messenger.query.SearchQuery;
 import org.telegram.messenger.query.StickersQuery;
 import org.telegram.messenger.support.widget.GridLayoutManager;
 import org.telegram.messenger.support.widget.LinearLayoutManager;
 import org.telegram.messenger.support.widget.RecyclerView;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.ActionBarMenu;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Adapters.MentionsAdapter;
 import org.telegram.ui.Adapters.StickersAdapter;
+import org.telegram.ui.Cells.BotHelpCell;
 import org.telegram.ui.Cells.BotSwitchCell;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatLoadingCell;
-import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.ActionBarMenu;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.ChatUnreadCell;
 import org.telegram.ui.Cells.CheckBoxCell;
@@ -125,10 +129,7 @@ import org.telegram.ui.Cells.MentionCell;
 import org.telegram.ui.Cells.StickerCell;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.Cells.BotHelpCell;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAvatarContainer;
 import org.telegram.ui.Components.ChatBigEmptyView;
@@ -146,7 +147,6 @@ import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.Size;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.StickersAlert;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.URLSpanBotCommand;
 import org.telegram.ui.Components.URLSpanMono;
@@ -1872,7 +1872,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         showDialog(builder.create());
                     } else {
                         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("Notifications", Activity.MODE_PRIVATE);
-                        preferences.edit().putInt("pin_" + dialog_id, info.pinned_msg_id).commit();
+                        preferences.edit().putInt("pin_" + dialog_id, info.pinned_msg_id).apply();
                         updatePinnedMessageView(true);
                     }
                 }
@@ -2243,7 +2243,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                     builder.setMessage(LocaleController.getString("SecretChatContextBotAlert", R.string.SecretChatContextBotAlert));
                                     builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), null);
                                     showDialog(builder.create());
-                                    preferences.edit().putBoolean("secretbot", true).commit();
+                                    preferences.edit().putBoolean("secretbot", true).apply();
                                 }
                             }
                             mentionContainer.setVisibility(View.VISIBLE);
@@ -3300,7 +3300,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (preferences.getBoolean("gifhint", false)) {
             return;
         }
-        preferences.edit().putBoolean("gifhint", true).commit();
+        preferences.edit().putBoolean("gifhint", true).apply();
 
         if (getParentActivity() == null || fragmentView == null || gifHintTextView != null) {
             return;
@@ -3821,7 +3821,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     MessagesController.getInstance().secretWebpagePreview = 1;
-                                    ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE).edit().putInt("secretWebpage2", MessagesController.getInstance().secretWebpagePreview).commit();
+                                    ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE).edit().putInt("secretWebpage2", MessagesController.getInstance().secretWebpagePreview).apply();
                                     foundUrls = null;
                                     searchLinks(charSequence, force);
                                 }
@@ -3831,7 +3831,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             showDialog(builder.create());
 
                             MessagesController.getInstance().secretWebpagePreview = 0;
-                            ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE).edit().putInt("secretWebpage2", MessagesController.getInstance().secretWebpagePreview).commit();
+                            ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE).edit().putInt("secretWebpage2", MessagesController.getInstance().secretWebpagePreview).apply();
                         }
                     });
                     return;
@@ -4132,7 +4132,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             if (replyingMessageObject != null && replyingMessageObject.messageOwner.reply_markup instanceof TLRPC.TL_replyKeyboardForceReply) {
                 SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
-                preferences.edit().putInt("answered_" + dialog_id, replyingMessageObject.getId()).commit();
+                preferences.edit().putInt("answered_" + dialog_id, replyingMessageObject.getId()).apply();
             }
             if (foundWebPage != null) {
                 foundWebPage = null;
@@ -4320,7 +4320,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 editor.putInt("notify2_" + dialog_id, 2);
                 flags = 1;
                 MessagesStorage.getInstance().setDialogFlags(dialog_id, flags);
-                editor.commit();
+                editor.apply();
                 TLRPC.TL_dialog dialog = MessagesController.getInstance().dialogs_dict.get(dialog_id);
                 if (dialog != null) {
                     dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
@@ -4336,7 +4336,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("notify2_" + dialog_id, 0);
             MessagesStorage.getInstance().setDialogFlags(dialog_id, 0);
-            editor.commit();
+            editor.apply();
             TLRPC.TL_dialog dialog = MessagesController.getInstance().dialogs_dict.get(dialog_id);
             if (dialog != null) {
                 dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
@@ -7597,7 +7597,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             editor.remove("diditem" + dialog_id);
             editor.remove("diditemo" + dialog_id);
         }
-        editor.commit();
+        editor.apply();
 
         if (currentEncryptedChat != null) {
             chatLeaveTime = System.currentTimeMillis();
@@ -8146,7 +8146,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 items.add(LocaleController.getString("AddContactTitle", R.string.AddContactTitle));
                                 options.add(15);
                             }
-                            if (selectedObject.messageOwner.media.phone_number != null || selectedObject.messageOwner.media.phone_number.length() != 0) {
+                            if (selectedObject.messageOwner.media.phone_number != null || (selectedObject.messageOwner.media.phone_number != null ? selectedObject.messageOwner.media.phone_number.length() : 0) != 0) {
                                 items.add(LocaleController.getString("Copy", R.string.Copy));
                                 options.add(16);
                                 items.add(LocaleController.getString("Call", R.string.Call));
@@ -8997,7 +8997,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     showOpenGameAlert(game, messageObject, urlStr, false, uid);
-                    ApplicationLoader.applicationContext.getSharedPreferences("Notifications", Activity.MODE_PRIVATE).edit().putBoolean("askgame_" + uid, false).commit();
+                    ApplicationLoader.applicationContext.getSharedPreferences("Notifications", Activity.MODE_PRIVATE).edit().putBoolean("askgame_" + uid, false).apply();
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);

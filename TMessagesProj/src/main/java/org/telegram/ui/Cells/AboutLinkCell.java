@@ -30,9 +30,9 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkPath;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 
 public class AboutLinkCell extends FrameLayout {

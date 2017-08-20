@@ -19,7 +19,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.net.Uri;
+
 import org.telegram.messenger.exoplayer2.C;
+
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -155,6 +157,7 @@ public final class ContentDataSource implements DataSource {
           assetFileDescriptor.close();
         }
       } catch (IOException e) {
+        //noinspection ThrowFromFinallyBlock
         throw new ContentDataSourceException(e);
       } finally {
         assetFileDescriptor = null;

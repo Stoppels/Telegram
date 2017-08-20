@@ -18,6 +18,7 @@ package org.telegram.messenger.audioinfo.mp3;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.audioinfo.AudioInfo;
 
 import java.io.IOException;
@@ -157,7 +158,7 @@ public class ID3v2Info extends AudioInfo {
                                 }
                             }
 						} catch (Throwable e) {
-							e.printStackTrace();
+							FileLog.e(e);
 						}
 						coverPictureType = picture.type;
 					}

@@ -16,6 +16,7 @@
 package org.telegram.messenger.exoplayer2.source.hls;
 
 import android.text.TextUtils;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.Format;
 import org.telegram.messenger.exoplayer2.ParserException;
@@ -30,6 +31,7 @@ import org.telegram.messenger.exoplayer2.text.SubtitleDecoderException;
 import org.telegram.messenger.exoplayer2.text.webvtt.WebvttParserUtil;
 import org.telegram.messenger.exoplayer2.util.MimeTypes;
 import org.telegram.messenger.exoplayer2.util.ParsableByteArray;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.regex.Matcher;

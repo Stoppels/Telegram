@@ -443,27 +443,27 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         }
                     }
                     if (startedTracking) {
-                        float x = containerView.getX();
-                        AnimatorSet animatorSet = new AnimatorSet();
-                        float velX = tracker.getXVelocity();
-                        float velY = tracker.getYVelocity();
-                        final boolean backAnimation = x < containerView.getMeasuredWidth() / 3.0f && (velX < 3500 || velX < velY);
-                        float distToMove;
-                        if (!backAnimation) {
-                            distToMove = containerView.getMeasuredWidth() - x;
-                            animatorSet.playTogether(
-                                    ObjectAnimator.ofFloat(containerView, "translationX", containerView.getMeasuredWidth()),
-                                    ObjectAnimator.ofFloat(this, "innerTranslationX", (float) containerView.getMeasuredWidth())
-                            );
-                        } else {
-                            distToMove = x;
-                            animatorSet.playTogether(
-                                    ObjectAnimator.ofFloat(containerView, "translationX", 0),
-                                    ObjectAnimator.ofFloat(this, "innerTranslationX", 0.0f)
-                            );
-                        }
+                            float x = containerView.getX();
+                            AnimatorSet animatorSet = new AnimatorSet();
+                            float velX = tracker.getXVelocity();
+                            float velY = tracker.getYVelocity();
+                            final boolean backAnimation = x < containerView.getMeasuredWidth() / 3.0f && (velX < 3500 || velX < velY);
+                            float distToMove;
+                            if (!backAnimation) {
+                                distToMove = containerView.getMeasuredWidth() - x;
+                                animatorSet.playTogether(
+                                        ObjectAnimator.ofFloat(containerView, "translationX", containerView.getMeasuredWidth()),
+                                        ObjectAnimator.ofFloat(this, "innerTranslationX", (float) containerView.getMeasuredWidth())
+                                );
+                            } else {
+                                distToMove = x;
+                                animatorSet.playTogether(
+                                        ObjectAnimator.ofFloat(containerView, "translationX", 0),
+                                        ObjectAnimator.ofFloat(this, "innerTranslationX", 0.0f)
+                                );
+                            }
 
-                        animatorSet.setDuration(Math.max((int) (200.0f / containerView.getMeasuredWidth() * distToMove), 50));
+                            animatorSet.setDuration(Math.max((int) (200.0f / containerView.getMeasuredWidth() * distToMove), 50));
                         animatorSet.addListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animator) {
@@ -4386,8 +4386,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                             if (idx != -1) {
                                 Spannable spannable = Spannable.Factory.getInstance().newSpannable(author);
                                 text = spannable;
-                                for (int a = 0; a < spans.length; a++) {
-                                    spannable.setSpan(spans[a], idx + spannableAuthor.getSpanStart(spans[a]), idx + spannableAuthor.getSpanEnd(spans[a]), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                for (MetricAffectingSpan span : spans) {
+                                    spannable.setSpan(span, idx + spannableAuthor.getSpanStart(span), idx + spannableAuthor.getSpanEnd(span), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                                 }
                             }
                         }

@@ -12,3 +12,8 @@ buildscript {
 plugins {
     id "org.sonarqube" version "2.5"
 }
+sonarqube {
+    properties {
+        property "sonar.android.lint.report", "build/outputs/lint-results.xml"
+    }
+}

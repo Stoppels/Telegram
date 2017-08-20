@@ -18,7 +18,9 @@ package org.telegram.messenger.exoplayer2.text.ttml;
 import android.graphics.Typeface;
 import android.support.annotation.IntDef;
 import android.text.Layout;
+
 import org.telegram.messenger.exoplayer2.util.Assertions;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

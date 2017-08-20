@@ -696,7 +696,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter {
                         return lhsNum < rhsNum ? -1 : (lhsNum == rhsNum ? 0 : 1);
                     } else if (lhsNum != -1 && rhsNum == -1) {
                         return -1;
-                    } else if (lhsNum == -1 && rhsNum != -1) {
+                    } else if (rhsNum != -1) {
                         return 1;
                     }
                     return 0;

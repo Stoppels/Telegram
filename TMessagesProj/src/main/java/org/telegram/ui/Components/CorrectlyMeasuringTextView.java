@@ -29,7 +29,7 @@ public class CorrectlyMeasuringTextView extends TextView{
                 maxw = Math.max(maxw, Math.round(l.getPaint().measureText(getText(), l.getLineStart(i), l.getLineEnd(i))));
             }
             super.onMeasure(Math.min(maxw + getPaddingLeft() + getPaddingRight(), getMeasuredWidth()) | MeasureSpec.EXACTLY, getMeasuredHeight() | MeasureSpec.EXACTLY);
-        } catch (Exception x) {
+        } catch (Exception ignored) {
         }
     }
 }

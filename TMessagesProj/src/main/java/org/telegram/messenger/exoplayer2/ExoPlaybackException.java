@@ -16,8 +16,10 @@
 package org.telegram.messenger.exoplayer2;
 
 import android.support.annotation.IntDef;
+
 import org.telegram.messenger.exoplayer2.source.MediaSource;
 import org.telegram.messenger.exoplayer2.util.Assertions;
+
 import java.io.IOException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

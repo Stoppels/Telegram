@@ -18,6 +18,7 @@ package org.telegram.messenger.exoplayer2.source;
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.Format;
 import org.telegram.messenger.exoplayer2.util.Assertions;
+
 import java.util.Arrays;
 
 // TODO: Add an allowMultipleStreams boolean to indicate where the one stream per group restriction

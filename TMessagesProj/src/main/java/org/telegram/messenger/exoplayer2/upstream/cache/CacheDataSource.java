@@ -17,6 +17,7 @@ package org.telegram.messenger.exoplayer2.upstream.cache;
 
 import android.net.Uri;
 import android.support.annotation.IntDef;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.upstream.DataSink;
 import org.telegram.messenger.exoplayer2.upstream.DataSource;
@@ -25,6 +26,7 @@ import org.telegram.messenger.exoplayer2.upstream.DataSpec;
 import org.telegram.messenger.exoplayer2.upstream.FileDataSource;
 import org.telegram.messenger.exoplayer2.upstream.TeeDataSource;
 import org.telegram.messenger.exoplayer2.upstream.cache.Cache.CacheException;
+
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.lang.annotation.Retention;
@@ -56,7 +58,7 @@ public final class CacheDataSource implements DataSource {
    * A flag indicating whether we will block reads if the cache key is locked. If this flag is
    * set, then we will read from upstream if the cache key is locked.
    */
-  public static final int FLAG_BLOCK_ON_CACHE = 1 << 0;
+  public static final int FLAG_BLOCK_ON_CACHE = 1;
 
   /**
    * A flag indicating whether the cache is bypassed following any cache related error. If set

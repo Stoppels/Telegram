@@ -18,6 +18,7 @@ package org.telegram.messenger.exoplayer2.text.webvtt;
 import android.text.Layout.Alignment;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
+
 import org.telegram.messenger.exoplayer2.text.Cue;
 
 /**

@@ -202,7 +202,7 @@ public class MessagesController implements NotificationCenter.NotificationCenter
                 return 1;
             } else if (dialog1.pinned && !dialog2.pinned) {
                 return -1;
-            } else if (dialog1.pinned && dialog2.pinned) {
+            } else if (dialog1.pinned) {
                 if (dialog1.pinnedNum < dialog2.pinnedNum) {
                     return 1;
                 } else if (dialog1.pinnedNum > dialog2.pinnedNum) {
@@ -3512,7 +3512,7 @@ public class MessagesController implements NotificationCenter.NotificationCenter
         if (taskId == 0) {
             NativeByteBuffer data = null;
             try {
-                data = new NativeByteBuffer(48 + peer.getObjectSize());
+                data = new NativeByteBuffer(48 + (peer != null ? peer.getObjectSize() : 0));
                 data.writeInt32(5);
                 data.writeInt64(dialog.id);
                 data.writeInt32(dialog.top_message);
@@ -7905,7 +7905,7 @@ public class MessagesController implements NotificationCenter.NotificationCenter
         String reason = null;
         if (chat != null) {
             reason = getRestrictionReason(chat.restriction_reason);
-        } else if (user != null) {
+        } else {
             reason = getRestrictionReason(user.restriction_reason);
         }
         if (reason != null) {

@@ -16,8 +16,10 @@
 package org.telegram.messenger.exoplayer2.text.webvtt;
 
 import android.text.TextUtils;
+
 import org.telegram.messenger.exoplayer2.util.ColorParser;
 import org.telegram.messenger.exoplayer2.util.ParsableByteArray;
+
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

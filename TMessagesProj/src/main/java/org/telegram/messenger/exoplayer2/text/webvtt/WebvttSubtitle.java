@@ -16,11 +16,13 @@
 package org.telegram.messenger.exoplayer2.text.webvtt;
 
 import android.text.SpannableStringBuilder;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.text.Cue;
 import org.telegram.messenger.exoplayer2.text.Subtitle;
 import org.telegram.messenger.exoplayer2.util.Assertions;
 import org.telegram.messenger.exoplayer2.util.Util;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

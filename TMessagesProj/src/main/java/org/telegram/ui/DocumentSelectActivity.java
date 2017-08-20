@@ -32,13 +32,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.support.widget.LinearLayoutManager;
 import org.telegram.messenger.support.widget.RecyclerView;
-import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.BackDrawable;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
+import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.SharedDocumentCell;
 import org.telegram.ui.Components.EmptyTextProgressView;
@@ -364,8 +364,7 @@ public class DocumentSelectActivity extends BaseFragment {
     public void loadRecentFiles() {
         try {
             File[] files = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).listFiles();
-            for (int a = 0; a < files.length; a++) {
-                File file = files[a];
+            for (File file : files) {
                 if (file.isDirectory()) {
                     continue;
                 }
@@ -513,8 +512,7 @@ public class DocumentSelectActivity extends BaseFragment {
                 }*/
             }
         });
-        for (int a = 0; a < files.length; a++) {
-            File file = files[a];
+        for (File file : files) {
             if (file.getName().indexOf('.') == 0) {
                 continue;
             }

@@ -21,7 +21,6 @@ import android.view.View;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.ActionBar.Theme;
 
 public class RadioButton extends View {
 

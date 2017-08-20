@@ -16,9 +16,11 @@
 package org.telegram.messenger.exoplayer2.text.ttml;
 
 import android.text.SpannableStringBuilder;
+
 import org.telegram.messenger.exoplayer2.C;
 import org.telegram.messenger.exoplayer2.text.Cue;
 import org.telegram.messenger.exoplayer2.util.Assertions;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

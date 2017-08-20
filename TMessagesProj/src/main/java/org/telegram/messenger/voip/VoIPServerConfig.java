@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**

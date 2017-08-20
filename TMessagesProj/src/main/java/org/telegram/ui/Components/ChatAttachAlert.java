@@ -49,18 +49,19 @@ import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.messenger.camera.*;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraView;
 import org.telegram.messenger.query.SearchQuery;
 import org.telegram.messenger.support.widget.LinearLayoutManager;
-import org.telegram.messenger.R;
 import org.telegram.messenger.support.widget.RecyclerView;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -518,7 +519,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     if (layoutManager.findLastVisibleItemPosition() > 1) {
                         hideHint();
                         hintShowed = false;
-                        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE).edit().putBoolean("bothint", true).commit();
+                        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE).edit().putBoolean("bothint", true).apply();
                     }
                 }
                 updateLayout();

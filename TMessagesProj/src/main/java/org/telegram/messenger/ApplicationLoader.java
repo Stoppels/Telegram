@@ -35,6 +35,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ForegroundDetector;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class ApplicationLoader extends Application {
@@ -49,7 +50,7 @@ public class ApplicationLoader extends Application {
     public static volatile boolean mainInterfacePausedStageQueue = true;
     public static volatile long mainInterfacePausedStageQueueTime;
 
-    private static void convertConfig() {
+    private static void convertConfig() throws IOException {
         SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("dataconfig", Context.MODE_PRIVATE);
         if (preferences.contains("currentDatacenterId")) {
             SerializedData buffer = new SerializedData(32 * 1024);
@@ -77,15 +78,20 @@ public class ApplicationLoader extends Application {
                 FileLog.e(e);
             }
 
+            RandomAccessFile fileOutputStream = null;
             try {
                 File file = new File(getFilesDirFixed(), "tgnet.dat");
-                RandomAccessFile fileOutputStream = new RandomAccessFile(file, "rws");
+                fileOutputStream = new RandomAccessFile(file, "rws");
                 byte[] bytes = buffer.toByteArray();
                 fileOutputStream.writeInt(Integer.reverseBytes(bytes.length));
                 fileOutputStream.write(bytes);
                 fileOutputStream.close();
             } catch (Exception e) {
                 FileLog.e(e);
+            } finally {
+                if (fileOutputStream != null){
+                    fileOutputStream.close();
+                }
             }
             buffer.cleanup();
             preferences.edit().clear().commit();
@@ -116,12 +122,16 @@ public class ApplicationLoader extends Application {
         }
 
         applicationInited = true;
-        convertConfig();
+        try {
+            convertConfig();
+        } catch (IOException e) {
+            FileLog.e(e);
+        }
 
         try {
             LocaleController.getInstance();
         } catch (Exception e) {
-            e.printStackTrace();
+            FileLog.e(e);
         }
 
         try {
@@ -130,7 +140,7 @@ public class ApplicationLoader extends Application {
             final BroadcastReceiver mReceiver = new ScreenReceiver();
             applicationContext.registerReceiver(mReceiver, filter);
         } catch (Exception e) {
-            e.printStackTrace();
+            FileLog.e(e);
         }
 
         try {
