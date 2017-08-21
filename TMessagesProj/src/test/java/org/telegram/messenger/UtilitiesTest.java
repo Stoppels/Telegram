@@ -11,6 +11,8 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Arrays;
 
+import static org.junit.Assert.fail;
+
 /**
  * Created by ns on 20/08/2017.
  */
@@ -36,15 +38,15 @@ public class UtilitiesTest {
         MockitoAnnotations.initMocks(this);
     }
 
-//    /**
-//     * Status: correctly throws exception.
-//     * @throws UnsatisfiedLinkError
-//     */
-//    @Test
-//    public void testUnpinBitmap() throws UnsatisfiedLinkError {
-//        Utilities.unpinBitmap(null);
-//        fail("Exception not thrown.");
-//    }
+    /**
+     * Status: correctly throws exception.
+     * @throws UnsatisfiedLinkError
+     */
+    @Test(expected=UnsatisfiedLinkError.class)
+    public void testUnpinBitmap() throws UnsatisfiedLinkError {
+        Utilities.unpinBitmap(null);
+        fail("An UnsatisfiedLinkError exception should be thrown (as expected).");
+    }
 
     /**
      * Status: OK.

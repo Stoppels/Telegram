@@ -159,7 +159,7 @@ public class ChangeNameActivity extends BaseFragment {
         }
     }
 
-    private void saveName() {
+    public void saveName() {
         TLRPC.User currentUser = UserConfig.getCurrentUser();
         if (currentUser == null || lastNameField.getText() == null || firstNameField.getText() == null) {
             return;

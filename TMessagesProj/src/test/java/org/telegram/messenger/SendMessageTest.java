@@ -66,5 +66,4 @@ public class SendMessageTest {
         assertEquals(messages.get(0).isSent(), true);
     }
 
-
 }

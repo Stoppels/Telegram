@@ -1,0 +1,19 @@
+Executable : /Users/ns/Library/Android/android-ndk-r14b/ndk-build
+arguments : 
+NDK_PROJECT_PATH=null
+APP_BUILD_SCRIPT=/Users/ns/Dev/Telegram/TMessagesProj/jni/Android.mk
+NDK_APPLICATION_MK=/Users/ns/Dev/Telegram/TMessagesProj/jni/Application.mk
+APP_ABI=x86
+NDK_ALL_ABIS=x86
+NDK_DEBUG=0
+APP_PLATFORM=android-18
+NDK_OUT=/Users/ns/Dev/Telegram/TMessagesProj/build/intermediates/ndkBuild/ui_testing/release/obj
+NDK_LIBS_OUT=/Users/ns/Dev/Telegram/TMessagesProj/build/intermediates/ndkBuild/ui_testing/release/lib
+NDK_APPLICATION_MK:=jni/Application.mk
+APP_PLATFORM:=android-14
+APP_SHORT_COMMANDS=false
+LOCAL_SHORT_COMMANDS=false
+-B
+-n
+jvmArgs : 
+

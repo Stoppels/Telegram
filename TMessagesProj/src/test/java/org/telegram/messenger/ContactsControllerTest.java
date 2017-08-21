@@ -50,10 +50,10 @@ public class ContactsControllerTest {
         // Verify the behavior
         verify(cc).addContact(user);
 
-        cc.readContacts();
+//        cc.readContacts();
 //        cc.contacts.size();
 //        Assert.assertEquals(runCc.contacts.get(0).user_id, user.id);
-        testAddContact();
+//        testAddContact();
     }
 
     /**
@@ -79,6 +79,7 @@ public class ContactsControllerTest {
         String name = "First Last";
         System.out.println(result);
         Assert.assertEquals(name, result);
+        Assert.assertFalse(user.username.equals(result));
     }
 
     @Test
