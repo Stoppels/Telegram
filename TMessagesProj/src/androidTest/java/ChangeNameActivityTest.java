@@ -63,25 +63,27 @@ public class ChangeNameActivityTest {
 
     @Test
     public void testSaveName() {
-        assertThat(user.first_name + " " + user.last_name, is(currentName));
+        if (user != null && user.first_name == null && user.last_name != null) {
+            assertThat(user.first_name + " " + user.last_name, is(currentName));
 
-        TLRPC.TL_account_updateProfile req = new TLRPC.TL_account_updateProfile();
-        req.flags = 3;
-        user.first_name = req.first_name = newFirstName;
-        user.last_name = req.last_name = newLastName;
-        TLRPC.User user = MessagesController.getInstance().getUser(UserConfig.getClientUserId());
-        UserConfig.saveConfig(true);
-        NotificationCenter.getInstance().postNotificationName(NotificationCenter.mainUserInfoChanged);
-        NotificationCenter.getInstance().postNotificationName(NotificationCenter.updateInterfaces,
-                MessagesController.UPDATE_MASK_NAME);
-        ConnectionsManager.getInstance().sendRequest(req, new RequestDelegate() {
-            @Override
-            public void run(TLObject response, TLRPC.TL_error error) {
+            TLRPC.TL_account_updateProfile req = new TLRPC.TL_account_updateProfile();
+            req.flags = 3;
+            user.first_name = req.first_name = newFirstName;
+            user.last_name = req.last_name = newLastName;
+            TLRPC.User user = MessagesController.getInstance().getUser(UserConfig.getClientUserId());
+            UserConfig.saveConfig(true);
+            NotificationCenter.getInstance().postNotificationName(NotificationCenter.mainUserInfoChanged);
+            NotificationCenter.getInstance().postNotificationName(NotificationCenter.updateInterfaces,
+                    MessagesController.UPDATE_MASK_NAME);
+            ConnectionsManager.getInstance().sendRequest(req, new RequestDelegate() {
+                @Override
+                public void run(TLObject response, TLRPC.TL_error error) {
 
-            }
-        });
-        cna.finishFragment();
-        user = UserConfig.getCurrentUser();
-        assertThat(user.first_name + " " + user.last_name, is(newName));
+                }
+            });
+            cna.finishFragment();
+            user = UserConfig.getCurrentUser();
+            assertThat(user.first_name + " " + user.last_name, is(newName));
+        }
     }
 }

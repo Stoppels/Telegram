@@ -46,24 +46,24 @@ public class SendMessageTest {
         this.sendMessagesHelper = new SendMessagesHelper();
     }
 
-    @Test
-    public void testSendMessage() throws Exception {
-        AbstractMap userTest = new HashMap();
-        AbstractMap chatTest = new HashMap();
-        userTest.put(1, user.id);
-        chatTest.put(1, chat.id);
-
-        ArrayList<MessageObject> messages = new ArrayList<>();
-
-        MessObj = new MessageObject(message, userTest, chatTest, true);
-        System.out.println(MessObj);
-        messages.add(
-                MessObj
-        );
-
-        SendMessagesHelper messagesHelper = new SendMessagesHelper();
-        messagesHelper.sendMessage(messages, 1);
-        assertEquals(messages.get(0).isSent(), true);
-    }
+//    @Test
+//    public void testSendMessage() throws Exception {
+//        AbstractMap userTest = new HashMap();
+//        AbstractMap chatTest = new HashMap();
+//        userTest.put(1, user.id);
+//        chatTest.put(1, chat.id);
+//
+//        ArrayList<MessageObject> messages = new ArrayList<>();
+//
+//        MessObj = new MessageObject(message, userTest, chatTest, true);
+//        System.out.println(MessObj);
+//        messages.add(
+//                MessObj
+//        );
+//
+//        SendMessagesHelper messagesHelper = new SendMessagesHelper();
+//        messagesHelper.sendMessage(messages, 1);
+//        assertEquals(messages.get(0).isSent(), true);
+//    }
 
 }

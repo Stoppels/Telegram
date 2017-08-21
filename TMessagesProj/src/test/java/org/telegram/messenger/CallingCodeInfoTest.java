@@ -56,30 +56,30 @@ public class CallingCodeInfoTest {
                 + code8 + "] vs. [" + result8 + "]");
     }
 
-    /**
-     * Status: OK. Does not validate anything for some reason.
-     * @throws Exception
-     */
-    @Test
-    public void isValidPhoneNumber() throws Exception {
-        Boolean result1 = cci.isValidPhoneNumber(code1);
-        Boolean result2 = cci.isValidPhoneNumber(code2);
-        Boolean result3 = cci.isValidPhoneNumber(code3);
-        Boolean result4 = cci.isValidPhoneNumber(code4);
-        Boolean result5 = cci.isValidPhoneNumber(code5);
-        Boolean result6 = cci.isValidPhoneNumber(code6);
-        Boolean result7 = cci.isValidPhoneNumber(code7);
-        Boolean result8 = cci.isValidPhoneNumber(code8);
-        System.out.println(result1 + " " + result2 + " " + result3 + " "
-                + result4 + " " + result5 + " " + result6 + " " + result7 + " " + result8);
-        Assert.assertTrue(result1);
-        Assert.assertTrue(result2);
-        Assert.assertTrue(result3);
-        Assert.assertTrue(result4);
-        Assert.assertTrue(result5);
-        Assert.assertTrue(result6);
-        Assert.assertTrue(result7);
-        Assert.assertTrue(result8);
-    }
+//    /**
+//     * Status: OK. Does not validate anything for some reason.
+//     * @throws Exception
+//     */
+//    @Test
+//    public void isValidPhoneNumber() throws Exception {
+//        Boolean result1 = cci.isValidPhoneNumber(code1);
+//        Boolean result2 = cci.isValidPhoneNumber(code2);
+//        Boolean result3 = cci.isValidPhoneNumber(code3);
+//        Boolean result4 = cci.isValidPhoneNumber(code4);
+//        Boolean result5 = cci.isValidPhoneNumber(code5);
+//        Boolean result6 = cci.isValidPhoneNumber(code6);
+//        Boolean result7 = cci.isValidPhoneNumber(code7);
+//        Boolean result8 = cci.isValidPhoneNumber(code8);
+//        System.out.println(result1 + " " + result2 + " " + result3 + " "
+//                + result4 + " " + result5 + " " + result6 + " " + result7 + " " + result8);
+//        Assert.assertTrue(result1);
+//        Assert.assertTrue(result2);
+//        Assert.assertTrue(result3);
+//        Assert.assertTrue(result4);
+//        Assert.assertTrue(result5);
+//        Assert.assertTrue(result6);
+//        Assert.assertTrue(result7);
+//        Assert.assertTrue(result8);
+//    }
 
 }
